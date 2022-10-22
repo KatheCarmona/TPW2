@@ -25,7 +25,7 @@ import lombok.EqualsAndHashCode;
 
 
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true) //Para hacer iguales los objetos
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name="locacion")
 public class Locacion {
 

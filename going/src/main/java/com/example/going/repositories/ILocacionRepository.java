@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.example.going.entities.Locacion;
 
 
-@Repository("paisRepository")
+@Repository("locacionRepository")
 public interface ILocacionRepository extends 
 						JpaRepository<Locacion, Serializable> {
 	
