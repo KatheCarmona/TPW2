@@ -83,19 +83,21 @@ public class LocacionService implements ILocacionService {
 		}
 		
 	}
-	
-	public Set<Comentarios> comentariosDeLaLocacion(int id) {
-		
-		Locacion p = locacionRepository.findByIdAndFetchLocacionEagerly(id);
-		
-		Set<Comentarios> lista = new HashSet<>();
-		if (p!=null) {
-			if(p.getComentarios()!=null) {
-					lista = p.getComentarios();
-			}
-		}
-		return lista;
-	}
-	
+//	
+//	public Set<Comentarios> comentariosDeLaLocacion(int id) {
+//		
+//		Locacion p = locacionRepository.findByIdAndFetchLocacionEagerly(id);
+//		
+//		Set<Comentarios> lista = new HashSet<>();
+//		if (p!=null) {
+//			if(p.getComentarios()!=null) {
+//					lista = p.getComentarios();
+//			}
+//		}
+//		return lista;
+//	}
+//	
+
+
 
 }

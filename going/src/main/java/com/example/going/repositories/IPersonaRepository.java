@@ -29,8 +29,8 @@ public interface IPersonaRepository extends
 //	public abstract Persona findByPaisAndEdadOrderByEdadDesc(String pais, int edad);
 	
 	
-	@Query("SELECT p FROM Persona p JOIN FETCH p.paises WHERE p.id = (:id)")
-	public abstract Persona findByIdAndFetchPaisesEagerly(@Param("id") int id);
+	@Query("SELECT p FROM Persona p JOIN FETCH p.locaciones WHERE p.id = (:id)")
+	public abstract Persona findByIdAndFetchLocacionesEagerly(@Param("id") int id);
 	
 	
 	

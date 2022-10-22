@@ -10,7 +10,7 @@ import com.example.going.entities.Locacion;
 import com.example.going.models.LocacionModelo;
 
 
-@Component("paisConverter")
+@Component("locacionConverter")
 public class LocacionConverter {
 	
 	

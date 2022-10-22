@@ -21,7 +21,7 @@ public interface ILocacionService {
 	
 	public List<LocacionModelo> getAllModel();
 	
-	public Set<Comentarios> comentariosDeLaLocacion(int id);
+	//public Set<Comentarios> comentariosDeLaLocacion(int id);
 	
 	
 

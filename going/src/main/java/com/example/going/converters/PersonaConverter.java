@@ -16,7 +16,7 @@ public class PersonaConverter {
 	private AvatarConverter avatarConverter;
 	
 	@Autowired
-	@Qualifier("paisConverter")
+	@Qualifier("locacionConverter")
 	private LocacionConverter locacionConverter;
 	
 	public PersonaModelo entityToModelSet(Persona persona) {

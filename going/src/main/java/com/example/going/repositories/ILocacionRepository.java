@@ -19,9 +19,9 @@ public interface ILocacionRepository extends
 	
 	public abstract Locacion findById(int id);
 	
-
-	@Query("SELECT p FROM Locacion p JOIN FETCH p.locacion WHERE p.id = (:id)")
-	public abstract Locacion findByIdAndFetchLocacionEagerly(@Param("id") int id);
+//
+//	@Query("SELECT p FROM Locacion p JOIN FETCH p.locacion WHERE p.id = (:id)")
+//	public abstract Locacion findByIdAndFetchLocacionEagerly(@Param("id") int id);
 	
 
 	

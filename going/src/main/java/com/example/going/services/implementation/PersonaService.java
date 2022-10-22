@@ -125,7 +125,7 @@ public class PersonaService implements IPersonaService {
 	
 	public Set<Locacion> locacionesCargadas(int id) {
 		
-		Persona p = personaRepository.findByIdAndFetchPaisesEagerly(id);
+		Persona p = personaRepository.findByIdAndFetchLocacionesEagerly(id);
 		System.out.println(p);
 		Set<Locacion> lista = new HashSet<>();
 		if (p!=null) {
