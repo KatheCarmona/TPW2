@@ -3,7 +3,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/goingOK
     username: root
-    password: kvcc
+    password: uces
   jpa:
     show-sql: true
     hibernate:

@@ -185,6 +185,12 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
 	
 	
 	
