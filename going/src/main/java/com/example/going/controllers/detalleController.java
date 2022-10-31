@@ -16,5 +16,13 @@ public class detalleController {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

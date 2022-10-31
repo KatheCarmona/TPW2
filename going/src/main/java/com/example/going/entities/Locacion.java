@@ -36,6 +36,7 @@ public class Locacion {
 	private String nombre;
 	private int valoracion;
 	private String direccion;
+	private String descripcion;
 
 	 @ManyToMany(mappedBy = "locaciones")
 	 @JsonIgnoreProperties("locaciones")
@@ -44,6 +45,10 @@ public class Locacion {
 	@OneToMany(mappedBy = "locacion", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<Comentarios> comentarios = new HashSet<>();;
+	
+	@OneToMany(mappedBy = "locacion", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Fotos> fotos = new HashSet<>();;
 	
 	
 	public Set<Comentarios> getComentarios() {
@@ -140,10 +145,62 @@ public class Locacion {
 		this.persona = persona;
 		this.comentarios = comentarios;
 	}
+	
+	
+
+	public Set<Fotos> getFotos() {
+		return fotos;
+	}
+	
+	public Fotos getUnaFoto() {
+		Fotos fto1 = new Fotos();
+		for (Fotos fto: this.fotos) {
+			fto1= fto;
+		}
+		
+		return fto1;
+	}
+
+	public void setFotos(Set<Fotos> fotos) {
+		this.fotos = fotos;
+	}
+
+	
+	public Locacion(int id, String nombre, int valoracion, String direccion, Set<Persona> persona,
+			Set<Comentarios> comentarios, Set<Fotos> fotos) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.valoracion = valoracion;
+		this.direccion = direccion;
+		this.persona = persona;
+		this.comentarios = comentarios;
+		this.fotos = fotos;
+	}
 
 	@Override
 	public String toString() {
 		return "Pais [id=" + id + ", nombre=" + nombre + ", valoracion=" + valoracion + "]";
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Locacion(int id, String nombre, int valoracion, String direccion, String descripcion,
+			Set<Comentarios> comentarios, Set<Fotos> fotos) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.valoracion = valoracion;
+		this.direccion = direccion;
+		this.descripcion = descripcion;
+		this.comentarios = comentarios;
+		this.fotos = fotos;
 	}
 	
 

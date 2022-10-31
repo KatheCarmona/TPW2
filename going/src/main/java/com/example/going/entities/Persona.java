@@ -197,22 +197,6 @@ public class Persona {
 
 	
 
-	public Persona(int id, String nombre, int edad, String email, String locacion, LocalDateTime createdAt,
-			LocalDateTime updatedAt, Avatar avatar) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.edad = edad;
-		this.email = email;
-		this.locacion = locacion;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.avatar = avatar;
-	
-	}
-
-
-
 	public Set<Locacion> getLocaciones() {
 		return locaciones;
 	}
@@ -241,13 +225,13 @@ public class Persona {
 	
 	
 	
-	public Persona(int id, String nombre, int edad, String email, String locacion,  Avatar avatar, Set<Locacion> locaciones) {
+	public Persona(int id, String nombre, int edad, String email,  Avatar avatar, Set<Locacion> locaciones) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.email = email;
-		this.locacion = locacion;
+
 	
 		this.avatar = avatar;
 	
@@ -272,6 +256,20 @@ public class Persona {
 		this.usuario = usuario;
 		this.locaciones = locaciones;
 	}
+	
+	public Persona(int id, String nombre, int edad, String email, LocalDateTime createdAt,
+			LocalDateTime updatedAt, Avatar avatar, Usuario usuario, Set<Locacion> locaciones) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.email = email;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.avatar = avatar;
+		this.usuario = usuario;
+		this.locaciones = locaciones;
+	}
 
 
 
@@ -279,6 +277,29 @@ public class Persona {
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", email=" + email + ", locacion=" + locacion
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt;
+	}
+
+
+
+	public Persona(int id, String nombre, int edad, String email, Set<Locacion> locaciones, Avatar avatar) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.email = email;
+		this.avatar = avatar;
+		this.locaciones = locaciones;
+	}
+
+
+
+	public Persona(String nombre, int edad, String email, Usuario usuario, Avatar avatar) {
+		super();
+		this.nombre = nombre;
+		this.edad = edad;
+		this.email = email;
+		this.avatar = avatar;
+		this.usuario = usuario;
 	}
 
 

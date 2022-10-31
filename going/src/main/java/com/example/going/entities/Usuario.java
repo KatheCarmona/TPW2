@@ -192,7 +192,11 @@ public class Usuario {
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 	
-	
+	public String getRol(){
+		String rol;
+		rol=this.usuarioRols.toString();
+		return rol;
+	}
 	
 	
 	

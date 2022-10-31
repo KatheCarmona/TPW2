@@ -19,28 +19,28 @@ public class PersonaConverter {
 	@Qualifier("locacionConverter")
 	private LocacionConverter locacionConverter;
 	
-	public PersonaModelo entityToModelSet(Persona persona) {
-		
-		
-	
-		return new PersonaModelo(persona.getId(), persona.getNombre(), persona.getEdad(), persona.getEmail(), 
-				persona.getLocacion(), 	avatarConverter.entityToModel(persona.getAvatar()), locacionConverter.entidadAModeloSet(persona.getLocaciones()));
-		
-		
-	}
-	
-	
-	
-	public Persona modelToEntitySet(PersonaModelo personaModelo) {
-		
-	
-		return new Persona(personaModelo.getId(), personaModelo.getNombre(), personaModelo.getEdad(),
-				personaModelo.getEmail(), personaModelo.getPais(), 	avatarConverter.modelToEntity(personaModelo.getAvatar()), 
-				locacionConverter.modeloAEntidadSet(personaModelo.getPaises()));
-		
-		
-	}
-	
+//	public PersonaModelo entityToModelSet(Persona persona) {
+//		
+//		
+//	
+//		return new PersonaModelo(persona.getId(), persona.getNombre(), persona.getEdad(), persona.getEmail(), 
+//				avatarConverter.entityToModel(persona.getAvatar()), locacionConverter.entidadAModeloSet(persona.getLocaciones()));
+//		
+//		
+//	}
+//	
+//	
+//	
+//	public Persona modelToEntitySet(PersonaModelo personaModelo) {
+//		
+//	
+//		return new Persona(personaModelo.getId(), personaModelo.getNombre(), personaModelo.getEdad(),
+//				personaModelo.getEmail(), avatarConverter.modelToEntity(personaModelo.getAvatar()), 
+//				locacionConverter.modeloAEntidadSet(personaModelo.getLocaciones()));
+//		
+//		
+//	}
+//	
 	
 	
 	
@@ -48,8 +48,8 @@ public class PersonaConverter {
 		
 		
 		
-		return new PersonaModelo(persona.getId(), persona.getNombre(), persona.getEdad(), persona.getEmail(), 
-				persona.getLocacion(), 	avatarConverter.entityToModel(persona.getAvatar()));
+		return new PersonaModelo(persona.getNombre(), persona.getEdad(), persona.getEmail(), 
+				persona.getUsuario(),avatarConverter.entityToModel(persona.getAvatar()));
 		
 		
 	}
@@ -59,8 +59,8 @@ public class PersonaConverter {
 	public Persona modelToEntity(PersonaModelo personaModelo) {
 		
 	
-		return new Persona(personaModelo.getId(), personaModelo.getNombre(), personaModelo.getEdad(),
-				personaModelo.getEmail(), personaModelo.getPais(), 	avatarConverter.modelToEntity(personaModelo.getAvatar()));
+		return new Persona(personaModelo.getNombre(),personaModelo.getEdad(),personaModelo.getEmail(),
+				personaModelo.getUsuario(),avatarConverter.modelToEntity(personaModelo.getAvatar()));
 		
 		
 	}

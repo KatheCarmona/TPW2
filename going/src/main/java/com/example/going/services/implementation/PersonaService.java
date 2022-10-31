@@ -13,9 +13,11 @@ import com.example.going.converters.PersonaConverter;
 import com.example.going.entities.Avatar;
 import com.example.going.entities.Locacion;
 import com.example.going.entities.Persona;
+import com.example.going.entities.Usuario;
 import com.example.going.models.PersonaModelo;
 import com.example.going.repositories.IAvatarRepository;
 import com.example.going.repositories.IPersonaRepository;
+import com.example.going.repositories.IUserRepository;
 import com.example.going.services.IPersonaService;
 
 
@@ -30,7 +32,9 @@ public class PersonaService implements IPersonaService {
 	@Qualifier("personaConverter")
 	private PersonaConverter personaConverter;
 	
-	
+	@Autowired
+	@Qualifier("userRepository")
+	private IUserRepository usuarioRepository;
 	
 	
 	@Autowired
@@ -49,6 +53,20 @@ public class PersonaService implements IPersonaService {
 		
 		
 		return personaConverter.entityToModel(personaRepository.findById(id));
+		
+	};
+	
+	public Usuario traerUsuario(int id) {
+		
+		Persona p = personaRepository.findByIdAndFetchUsuarioEagerly(id);
+		Usuario usuario = new Usuario();
+		if (p!=null) {
+			if(p.getUsuario()!=null) {
+				usuario = p.getUsuario();
+			}
+		}
+		
+		return usuario;
 		
 	};
 	
@@ -78,7 +96,7 @@ public class PersonaService implements IPersonaService {
 		for (Persona p: personas) {
 			
 			Avatar avatar = avatarRepository.findById(p.getAvatar().getId());
-			
+			Usuario usuario = usuarioRepository.findById(p.getUsuario().getId());
 			
 			Set<Locacion> locaciones = locacionesCargadas(p.getId());
 			
@@ -89,6 +107,10 @@ public class PersonaService implements IPersonaService {
 			
 			if(locaciones!=null) {
 			p.setLocaciones(locaciones);
+			}
+			
+			if(usuario!=null) {
+			p.setUsuario(usuario);
 			}
 
 		}
@@ -122,6 +144,16 @@ public class PersonaService implements IPersonaService {
 	}
 	
 	
+//	@Override
+//	public PersonaModelo insertOrUpdateSet(PersonaModelo personaModelo) {
+//		
+//	
+//		
+//		Persona persona = personaRepository.save(personaConverter.modelToEntitySet(personaModelo));
+//		
+//		return personaConverter.entityToModelSet(persona);
+//	}
+	
 	
 	public Set<Locacion> locacionesCargadas(int id) {
 		
@@ -139,17 +171,6 @@ public class PersonaService implements IPersonaService {
 
 	
 	
-	
-	
-	@Override
-	public PersonaModelo insertOrUpdateSet(PersonaModelo personaModelo) {
-		
-	
-		
-		Persona persona = personaRepository.save(personaConverter.modelToEntitySet(personaModelo));
-		
-		return personaConverter.entityToModelSet(persona);
-	}
 	
 	
 	@Override

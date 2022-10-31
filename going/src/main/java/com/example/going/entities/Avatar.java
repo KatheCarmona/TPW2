@@ -44,9 +44,7 @@ public class Avatar {
 	}
 	@Override
 	public String toString() {
-		return "Avatar [id=" + id + ","
-				+ " imagen=" + imagen
-				;
+		return imagen;
 	}
 	public String getImagen() {
 		return imagen;

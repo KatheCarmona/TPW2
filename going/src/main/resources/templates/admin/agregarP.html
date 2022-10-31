@@ -121,11 +121,11 @@
 
 
 			<div class="row">
-				<form action="#" th:action="@{/adminpage}"
+				<form action="#" th:action="@{/adminpage/crearPersona}"
 					th:object="${persona}" method="post" enctype="multipart/form-data">
 					
 					<div class="col-lg-offset-2 col-lg-8 text-center">
-						<h2>Agregar</h2>
+						<h2>Usuario X</h2>
 						
 						<div class="form-group">
 							 <label></label>
@@ -159,8 +159,8 @@
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon">
-								<input type="hidden" th:field="*{avatar.id}">
-								<input type="file" class="form-control"  placeholder="URL de la foto" id="imagen" >
+								
+								<input type="text" class="form-control"  placeholder="URL de la foto">
 								<label></label>
 							</div>
 						</div>
@@ -171,6 +171,7 @@
 					</div>
 				</form>
 			</div>
+
 
 
 <br>

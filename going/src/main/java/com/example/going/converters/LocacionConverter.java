@@ -19,7 +19,8 @@ public class LocacionConverter {
 		
 		
 	
-		return new LocacionModelo(locacion.getId(), locacion.getNombre(), locacion.getValoracion());
+		return new LocacionModelo(locacion.getId(), locacion.getNombre(), locacion.getValoracion(),locacion.getDireccion(),
+				locacion.getDescripcion(),locacion.getComentarios(),locacion.getFotos());
 		
 		
 	}
@@ -62,7 +63,8 @@ public class LocacionConverter {
 	public Locacion modelToEntity(LocacionModelo locacionModelo) {
 		
 	
-		return new Locacion(locacionModelo.getId(), locacionModelo.getNombre(), locacionModelo.getValoracion());
+		return new Locacion(locacionModelo.getId(), locacionModelo.getNombre(), locacionModelo.getValoracion(),locacionModelo.getDireccion(),
+				locacionModelo.getDescripcion(), locacionModelo.getComentarios(),locacionModelo.getFotos());
 		
 		
 	}

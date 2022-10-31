@@ -8,6 +8,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import com.example.going.entities.Usuario;
+
 
 public class PersonaModelo {
 	
@@ -25,15 +27,14 @@ public class PersonaModelo {
 	@Max(30)
 	private String email;
 	
-	@Size(min=4, max =40)
-	private String pais;
+	private Usuario usuario;
 	
 	
 	private AvatarModelo avatar;
 	
 
 	
-	private Set<LocacionModelo> paises = new HashSet<>();
+	private Set<LocacionModelo> locaciones = new HashSet<>();
 	
 	public PersonaModelo() 
 	{
@@ -50,31 +51,11 @@ public class PersonaModelo {
 	}
 
 	
-	
-	
-	public PersonaModelo(@Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email,
-			@Size(min = 4, max = 40) String pais) {
-		super();
-		this.nombre = nombre;
-		this.edad = edad;
-		this.email = email;
-		this.pais = pais;
-	}
-
-
-	public String getPais() {
-		return pais;
-	}
-
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
 
 
 	@Override
 	public String toString() {
-		return "PersonaModelo [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", email=" + email + ", pais=" + pais
+		return "PersonaModelo [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", email=" + email
 				+ ", avatar=" + avatar + "]";
 	}
 
@@ -100,28 +81,26 @@ public class PersonaModelo {
 
 	
 	
+	
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email,
-			@Size(min = 4, max = 40) String pais, AvatarModelo avatar, Set<LocacionModelo> paises) {
+	public PersonaModelo(@Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Email @Min(4) @Max(30) String email,
+			Usuario usuario, AvatarModelo avatar) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.email = email;
-		this.pais = pais;
+		this.usuario = usuario;
 		this.avatar = avatar;
-		this.paises = paises;
 	}
 
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email,
-			@Size(min = 4, max = 40) String pais) {
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.email = email;
-		this.pais = pais;
+
 	}
 
 
@@ -145,28 +124,49 @@ public class PersonaModelo {
 	}
 
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email,
-			@Size(min = 4, max = 40) String pais, AvatarModelo avatar) {
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email, AvatarModelo avatar) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.email = email;
-		this.pais = pais;
 		this.avatar = avatar;
 	}
 
 
+	
 
 
 
-	public Set<LocacionModelo> getPaises() {
-		return paises;
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad,
+			@Email @Min(4) @Max(30) String email,  Set<LocacionModelo> locaciones, AvatarModelo avatar) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.email = email;
+		this.avatar = avatar;
+		this.locaciones = locaciones;
 	}
 
 
-	public void setPaises(Set<LocacionModelo> paises) {
-		this.paises = paises;
+	public Set<LocacionModelo> getLocaciones() {
+		return locaciones;
+	}
+
+
+	public void setLocaciones(Set<LocacionModelo> locaciones) {
+		this.locaciones = locaciones;
+	}
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

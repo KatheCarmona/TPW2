@@ -65,14 +65,17 @@
  <br>
         <div class="row gy-4">
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200"
+          th:each="l : ${locaciones}">
+          
             <div class="card">
 
               <div class="card-body">
-                <h4 class="card-title">Jane Doe</h4>
-                <img class="card-img-bottom" src="https://media-cdn.tripadvisor.com/media/photo-s/1a/e0/13/d0/uptown-ba.jpg" alt="Card image"><a  routerLink= "/detalle" routerLinkActive= "active"  class="stretched-link"></a>
-                <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
-                <a href="google.com" class="btn btn-outline-success">Yendo</a>
+                <h4 class="card-title" th:text="${l.nombre}"></h4>
+               <!-- <img class="card-img-bottom" th:src="@{'/images/' + ${l.getUnaFoto().getImagen()}"-->
+                 alt="Card image"><a  th:href="@{/explorar/detalleLocacion/} + ${l.id}" class="stretched-link"></a>
+                <p class="card-text"  th:text="${l.descripcion}" ></p>
+                <a th:href="@{/explorar/detalleLocacion/} + ${l.id}" class="btn btn-outline-success">Yendo</a>
               </div>
 
             </div>
@@ -81,22 +84,8 @@
 
 
 
+<!--
 
-
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="card">
-
-              <div class="card-body">
-                <h4 class="card-title">Jane Doe</h4>
-                <img class="card-img-bottom" src="../bootstrap4/img_avatar6.png" alt="Card image"><a  href="service-details.html" class="stretched-link"></a>
-                <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
-                <a href="google.com" class="btn btn-outline-success">Yendo</a>
-              </div>
-
-            </div>
-
-          </div><!-- End Card Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
@@ -110,7 +99,7 @@
 
             </div>
 
-          </div><!-- End Card Item -->
+          </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
@@ -124,7 +113,7 @@
 
             </div>
 
-          </div><!-- End Card Item -->
+          </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
@@ -138,7 +127,22 @@
 
             </div>
 
-          </div><!-- End Card Item -->
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+
+              <div class="card-body">
+                <h4 class="card-title">Jane Doe</h4>
+                <img class="card-img-bottom" src="../bootstrap4/img_avatar6.png" alt="Card image"><a  href="service-details.html" class="stretched-link"></a>
+                <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
+                <a href="google.com" class="btn btn-outline-success">Yendo</a>
+              </div>
+
+            </div>
+
+          </div>
+          -->
 
           </div>
 

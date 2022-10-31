@@ -99,6 +99,11 @@ public class UsuarioRol {
 		super();
 	}
 
+	@Override
+	public String toString() {
+		return rol;
+	}
+
 	
 	
 	

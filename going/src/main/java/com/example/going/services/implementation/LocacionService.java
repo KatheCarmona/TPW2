@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.going.converters.LocacionConverter;
 import com.example.going.entities.Comentarios;
+import com.example.going.entities.Fotos;
 import com.example.going.entities.Locacion;
 import com.example.going.models.LocacionModelo;
 import com.example.going.repositories.ILocacionRepository;
@@ -83,21 +84,35 @@ public class LocacionService implements ILocacionService {
 		}
 		
 	}
-//	
-//	public Set<Comentarios> comentariosDeLaLocacion(int id) {
-//		
-//		Locacion p = locacionRepository.findByIdAndFetchLocacionEagerly(id);
-//		
-//		Set<Comentarios> lista = new HashSet<>();
-//		if (p!=null) {
-//			if(p.getComentarios()!=null) {
-//					lista = p.getComentarios();
-//			}
-//		}
-//		return lista;
-//	}
-//	
-
+	
+	public Set<Comentarios> comentariosDeLaLocacion(int id) {
+		
+		Locacion p = locacionRepository.findByIdAndFetchcomentariosEagerly(id);
+		
+		Set<Comentarios> lista = new HashSet<>();
+		if (p!=null) {
+			if(p.getComentarios()!=null) {
+					lista = p.getComentarios();
+			}
+		}else {
+			System.out.println("la lista esta vacia");
+		}
+		return lista;
+	}
+	
+	public Set<Fotos> fotosDeLaLocacion(int id) {
+		
+		Locacion p = locacionRepository.findByIdAndFetchFotosEagerly(id);
+		
+		Set<Fotos> lista = new HashSet<>();
+		if (p!=null) {
+			if(p.getFotos()!=null) {
+					lista = p.getFotos();
+			}
+		}
+		return lista;
+	}
+	
 
 
 }
