@@ -172,7 +172,14 @@ public class LocacionModelo {
 	}
 
 
-
+	public String getUnaFoto() {
+		Fotos fto1 = new Fotos();
+		for (Fotos fto: this.fotos) {
+			fto1= fto;
+		}
+		
+		return fto1.getImagen();
+	}
 	
 	
 

@@ -35,7 +35,7 @@ import com.example.going.models.PersonaModelo;
 import com.example.going.services.IPersonaService;
 
 @Controller
-@RequestMapping("adminpage")
+@RequestMapping("/adminpage")
 public class AdminController {
 	
 	@Autowired
@@ -62,7 +62,8 @@ public class AdminController {
 	
 	@PreAuthorize("hasRole('ROLE_1')")
 	@GetMapping("/detalles/{id}")
-	public ModelAndView  detalles(@PathVariable("id")int id, Model model) {	
+	public ModelAndView  detalles(@PathVariable("id")int id, Model model,
+			@RequestParam("file") MultipartFile imagen) {	
 		
 		
 		
@@ -146,7 +147,7 @@ public class AdminController {
 			
 			personaService.insertOrUpdate(persona); 
 			
-			mV.setViewName(ViewRouteHelper.ADMINPAGE);
+			mV.setViewName(ViewRouteHelper.NUEVAP);
 			mV.addObject("persona", persona);
 			
 			

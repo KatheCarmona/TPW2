@@ -1,8 +1,12 @@
-INSERT INTO `goingok`.`usuario` (`id`, `enabled`, `username`) VALUES ('1', b'1', 'ka');
-INSERT INTO `goingok`.`usuario` (`id`, `enabled`, `username`) VALUES ('2', b'1', 'kc');
+INSERT INTO `goingok`.`usuario` (`id`, `enabled`,`pass`, `username`) VALUES ('1', b'1'," ", 'ka');
+INSERT INTO `goingok`.`usuario` (`id`, `enabled`,`pass`, `username`) VALUES ('2', b'1'," ", 'kc');
 
 INSERT INTO `goingok`.`user_role` (`id`, `rol`, `user_id`) VALUES ('1', 'ROLE_1', '1');
 INSERT INTO `goingok`.`user_role` (`id`, `rol`, `user_id`) VALUES ('2', 'ROLE_2', '2');
+
+
+UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '1');
+UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '2');
 
 INSERT INTO `goingok`.`avatar` (`id`, `imagen`) VALUES ('1', 'a.png');
 INSERT INTO `goingok`.`avatar` (`id`, `imagen`) VALUES ('2', 'b.png');
@@ -60,6 +64,4 @@ INSERT INTO `goingok`.`comentario` (`id`, `descripcion`, `locacion_id`) VALUES (
 
 
 
-UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '1');
-UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '2');
 

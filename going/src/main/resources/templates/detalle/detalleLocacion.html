@@ -49,8 +49,8 @@
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel"
 	 	>
 	  <div class="carousel-inner">
-	    <div class="carousel-item active" th:each="f : ${fotos}" >
-	     <img th:src="@{'/images/' + ${f.imagen}}" class="d-block w-100" alt="...">
+	    <div class="carousel-item active" >
+	     <img th:src="@{'/images/' + ${lugar.getUnaFoto()}}" class="d-block w-100" alt="...">
 	    </div>
 	  
 	  

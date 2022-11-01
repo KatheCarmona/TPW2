@@ -152,13 +152,13 @@ public class Locacion {
 		return fotos;
 	}
 	
-	public Fotos getUnaFoto() {
+	public String getUnaFoto() {
 		Fotos fto1 = new Fotos();
 		for (Fotos fto: this.fotos) {
 			fto1= fto;
 		}
 		
-		return fto1;
+		return fto1.getImagen();
 	}
 
 	public void setFotos(Set<Fotos> fotos) {
