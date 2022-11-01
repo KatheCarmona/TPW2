@@ -158,7 +158,7 @@
 						
 						<div class="form-group">
 							<label></label>
-							<select class="form-control" data-ng-model="nuevoAfiliado.beneficios" multiple data-ng-options="a.id as a.nombre for a in beneficios" ></select>
+							<select class="form-control" data-ng-model="" multiple data-ng-options="" ></select>
 							<label></label>
 						</div>
 						<div class="form-group">
@@ -172,8 +172,11 @@
 						
 						<form th:action="@{/adminpage}">
         					<input type="submit"  class="btn btn-success btn-sm" value="Guardar" />
+        					<button type="button" class="btn btn-default">Cancelar</button>
 						</form>
-						<button type="button" class="btn btn-default" data-ng-click="cancelarAfiliadoNuevo()">Cancelar</button>
+						
+
+					
 					</div>
 				</form>
 			</div>

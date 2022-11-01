@@ -1,8 +1,19 @@
-INSERT INTO `goingok`.`usuario` (`id`, `enabled`, `username`) VALUES ('1', b'1', 'ka');
-INSERT INTO `goingok`.`usuario` (`id`, `enabled`, `username`) VALUES ('2', b'1', 'kc');
+INSERT INTO `goingok`.`usuario` (`id`, `enabled`,`pass`, `username`) VALUES ('1', b'1'," ", 'ka');
+INSERT INTO `goingok`.`usuario` (`id`, `enabled`,`pass`, `username`) VALUES ('2', b'1'," ", 'kc');
 
 INSERT INTO `goingok`.`user_role` (`id`, `rol`, `user_id`) VALUES ('1', 'ROLE_1', '1');
 INSERT INTO `goingok`.`user_role` (`id`, `rol`, `user_id`) VALUES ('2', 'ROLE_2', '2');
+
+
+UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '1');
+UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '2');
+
+INSERT INTO `goingok`.`avatar` (`id`, `imagen`) VALUES ('1', 'a.png');
+INSERT INTO `goingok`.`avatar` (`id`, `imagen`) VALUES ('2', 'b.png');
+
+INSERT INTO `goingok`.`persona` (`id`, `edad`, `email`, `nombre`, `avatar_id`, `usuario_id`) VALUES ('1', '27', 'ka@kmail.com', 'Kathe', '1', '1');
+INSERT INTO `goingok`.`persona` (`id`, `edad`, `email`, `nombre`, `avatar_id`, `usuario_id`) VALUES ('2', '20', 'kc@kc.com', 'Catalina', '2', '2');
+
 
 INSERT INTO `goingok`.`locacion` (`id`, `descripcion`, `direccion`, `nombre`, `valoracion`) VALUES ('1', 'Lugar moderno con platos y cocteles internacionales, y una entrada con temática del metro de Nueva York.', 'Arévalo 2030, Buenos Aires C1414 Argentina', 'Uptown & The Bronx', '4');
 INSERT INTO `goingok`.`locacion` (`id`, `descripcion`, `direccion`, `nombre`, `valoracion`) VALUES ('2', 'Tomar un café con la compañia de gatitos es todo lo que está bien.', 'Jean Jaures 687, C1215 CABA', 'Cat cafe Buenos Aires', '4');
@@ -54,15 +65,3 @@ INSERT INTO `goingok`.`comentario` (`id`, `descripcion`, `locacion_id`) VALUES (
 
 
 
-
-UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '1');
-UPDATE `goingok`.`usuario` SET `pass` = '$2a$10$yydIJELlb5wwwzAD6qOB1OWK1efd0OeDqpg53HOGkcs0kB1TDpXZa' WHERE (`id` = '2');
-
-INSERT INTO `goingok`.`avatar` (`id`, `imagen`) VALUES ('1', 'a');
-INSERT INTO `goingok`.`avatar` (`id`, `imagen`) VALUES ('2', 'b');
-
-UPDATE `goingok`.`persona` SET `avatar_id` = '1' WHERE (`id` = '1');
-UPDATE `goingok`.`persona` SET `avatar_id` = '2' WHERE (`id` = '2');
-
-UPDATE `goingok`.`avatar` SET `imagen` = 'a.png' WHERE (`id` = '1');
-UPDATE `goingok`.`avatar` SET `imagen` = 'b.png' WHERE (`id` = '2');

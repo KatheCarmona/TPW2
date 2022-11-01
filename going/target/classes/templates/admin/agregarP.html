@@ -117,38 +117,45 @@
 	  </tbody>
 	  
 	 -->
+	 
+	
 	</table>
 
-
+<!--
 			<div class="row">
-				<form action="#" th:action="@{/adminpage/crearPersona}"
-					th:object="${persona}" method="post" enctype="multipart/form-data">
+				<form>
 					
-					<div class="col-lg-offset-2 col-lg-8 text-center">
-						<h2>Usuario X</h2>
+					
+					       <img 
+        					th:alt= "${persona.getAvatar().getImagen()}"
+        					th:src="@{'/images/' + ${persona.getAvatar().getImagen()} }"
+        					class="img-thumbnail">
+						
+						
+						
 						
 						<div class="form-group">
 							 <label></label>
-							<input type="text" class="form-control" placeholder="Nombre" th:field="*{nombre}">
+							<input type="text" class="form-control"  th:value="${persona.nombre}">
 						</div>
 						<div class="form-group">
 							    <label></label>
-							<input type="text" class="form-control" placeholder="Edad" th:field="*{edad}">
+							<input type="text" class="form-control" th:value="${persona.edad}">
 						</div>
 						
 						<div class="form-group">
 						    <label></label>
-							<input type="email" class="form-control" placeholder="Correo" th:field="*{email}">
+							<input type="email" class="form-control"  th:value="${persona.email}">
 						</div>
 						
 						<div class="form-group">
 						    <label></label>
-							<input type="text" class="form-control" placeholder="Nombre usuario">
+							<input type="text" class="form-control" th:value="${usuario.username}">
 						</div>
 						
 						<div class="form-group">
 						    <label></label>
-							<input type="text" class="form-control" placeholder="Rol">
+							<input type="text" class="form-control"  th:value="${usuario.getUserRoles().toString()}">
 						</div>
 						
 						<div class="form-group">
@@ -160,19 +167,20 @@
 							<div class="input-group">
 								<span class="input-group-addon">
 								
-								<input type="text" class="form-control"  placeholder="URL de la foto">
+								<input type="text" class="form-control"  th:value="${persona.getAvatar().getImagen()}" >
 								<label></label>
 							</div>
 						</div>
-							
-        					<input type="submit"  class="btn btn-info btn-sm" value="Guardar" />
+						<form th:action="@{/adminpage}">
+        					<input type="submit"  class="btn btn-success btn-sm" value="Volver" />
+        					
+						</form>
 						
-						<button type="button" class="btn btn-default" data-ng-click="cancelarAfiliadoNuevo()">Cancelar</button>
 					</div>
 				</form>
 			</div>
 
-
+	 -->
 
 <br>
 <br>
