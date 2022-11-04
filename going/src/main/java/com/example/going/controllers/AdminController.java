@@ -62,8 +62,7 @@ public class AdminController {
 	
 	@PreAuthorize("hasRole('ROLE_1')")
 	@GetMapping("/detalles/{id}")
-	public ModelAndView  detalles(@PathVariable("id")int id, Model model,
-			@RequestParam("file") MultipartFile imagen) {	
+	public ModelAndView  detalles(@PathVariable("id")int id, Model model) {	
 		
 		
 		
@@ -90,28 +89,28 @@ public class AdminController {
 	
 	
 	
-//	@PreAuthorize("hasRole('ROLE_1')")
-//	@GetMapping("/editarUsuario/{id}")
-//	public ModelAndView  editarPersona(@PathVariable("id")int id, Model model) {	
-//		
-//		
-//		
-//		PersonaModelo persona = personaService.traerPorId(id);
-//
-//		model.addAttribute("persona", persona);
-//		
-//		
-//		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.DETALLEUSER);
-//		
-//		
-//		return modelAndView;	
-//	}
-//	
+	@PreAuthorize("hasRole('ROLE_1')")
+	@GetMapping("/editarUsuario/{id}")
+	public ModelAndView  editarPersona(@PathVariable("id")int id, Model model) {	
+		
+		
+		
+		PersonaModelo persona = personaService.traerPorId(id);
+
+		model.addAttribute("persona", persona);
+		
+		
+		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.ADMINPAGE);
+		
+		
+		return modelAndView;	
+	}
+	
 	
 	
 	
 	@PreAuthorize("hasRole('ROLE_1')")
-	@PostMapping("")
+	@PostMapping("/agregar")
 	public ModelAndView nuevaPersona(@Valid @ModelAttribute("persona")PersonaModelo persona,
 			BindingResult b, @RequestParam("file") MultipartFile imagen) {
 		
@@ -158,6 +157,25 @@ public class AdminController {
 			
 		return mV;
 	}
+	
+	
+	@GetMapping("/eliminarPersona/{id}")
+	public ModelAndView  eliminarPersona(@PathVariable("id")int id, Model model) {	
+		
+	
+		personaService.remove(id);
+		
+		ModelAndView mV = new ModelAndView();
+		
+		mV.setViewName(ViewRouteHelper.NUEVAP);
+		mV.addObject("listaDePersonas",personaService.getAll());
+		
+	
+		
+		
+		return mV;	
+	}
+	
 
 	
 }

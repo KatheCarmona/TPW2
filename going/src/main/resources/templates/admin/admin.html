@@ -85,10 +85,14 @@
 	      	<form th:action="@{/adminpage/detalles/} + ${u.id}">
         		<input type="submit"  class="btn btn-info btn-sm" value="Editar" />
 			</form>
-	      	<button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-	      	<button type="button" class="btn btn-warning btn-sm">Bloquear</button>
+			<form th:action="@{/adminpage/eliminarPersona/} + ${u.id}">
+	      		<input type="submit"  class="btn btn-danger btn-sm" value="Eliminar" />
+	      	</form>
+	      	<input type="submit"  class="btn btn-warning btn-sm"   value="Bloquear" />
 	      </td>
 	    </tr>
+	    
+	 
 
 <!--
 	    <tr>
@@ -121,7 +125,7 @@
 
 
 			<div class="row">
-				<form action="#" th:action="@{/persona}"
+				<form action="#" th:action="@{/adminpage/agregar}"
 					th:object="${persona}" method="post" enctype="multipart/form-data">
 					
 					<div class="col-lg-offset-2 col-lg-8 text-center">
@@ -160,7 +164,7 @@
 							<div class="input-group">
 								<span class="input-group-addon">
 								<input type="hidden" th:field="*{avatar.id}">
-								<input type="file" class="form-control"  placeholder="URL de la foto" id="imagen" >
+								<input type="file" class="form-control"  placeholder="URL de la foto" name="file" id="imagen" >
 								<label></label>
 							</div>
 						</div>

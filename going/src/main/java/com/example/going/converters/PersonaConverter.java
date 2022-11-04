@@ -48,7 +48,7 @@ public class PersonaConverter {
 		
 		
 		
-		return new PersonaModelo(persona.getNombre(), persona.getEdad(), persona.getEmail(), 
+		return new PersonaModelo(persona.getId(),persona.getNombre(), persona.getEdad(), persona.getEmail(), 
 				persona.getUsuario(),avatarConverter.entityToModel(persona.getAvatar()));
 		
 		
@@ -59,7 +59,7 @@ public class PersonaConverter {
 	public Persona modelToEntity(PersonaModelo personaModelo) {
 		
 	
-		return new Persona(personaModelo.getNombre(),personaModelo.getEdad(),personaModelo.getEmail(),
+		return new Persona(personaModelo.getId(),personaModelo.getNombre(),personaModelo.getEdad(),personaModelo.getEmail(),
 				personaModelo.getUsuario(),avatarConverter.modelToEntity(personaModelo.getAvatar()));
 		
 		

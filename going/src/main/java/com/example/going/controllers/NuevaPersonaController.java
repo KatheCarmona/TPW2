@@ -21,13 +21,20 @@ import com.example.going.helpers.ViewRouteHelper;
 import com.example.going.models.PersonaModelo;
 import com.example.going.services.IPersonaService;
 
-@Controller
-@RequestMapping("/persona")
-public class NuevaPersonaController {
-	@Autowired
-	@Qualifier("personaService")
-	private IPersonaService personaService;
-	
+//@Controller
+//@RequestMapping("/persona")
+//public class NuevaPersonaController {
+//	@Autowired
+//	@Qualifier("personaService")
+//	private IPersonaService personaService;
+//	
+//	@GetMapping("")
+//	public String nuevapersona() {
+//		
+//			return ViewRouteHelper.NUEVAP;
+//		
+//		
+//	}
 	
 //	@PreAuthorize("hasRole('ROLE_1')")
 //	@PostMapping("")
@@ -60,22 +67,22 @@ public class NuevaPersonaController {
 	
 	
 	
-	@PreAuthorize("hasRole('ROLE_1')")
-	@PostMapping("")
-	public ModelAndView  listaDePersonas(@RequestParam("file") MultipartFile imagen) {	
-		
-		
-	
-		ModelAndView mV = new ModelAndView();
-		
-		mV.setViewName(ViewRouteHelper.NUEVAP);
-		mV.addObject("listaDePersonas",personaService.getAll());
-		
-	
-		
-		
-		return mV;	
-	}
+//	@PreAuthorize("hasRole('ROLE_1')")
+//	@PostMapping("")
+//	public ModelAndView  listaDePersonas(@RequestParam("file") MultipartFile imagen) {	
+//		
+//		
+//	
+//		ModelAndView mV = new ModelAndView();
+//		
+//		mV.setViewName(ViewRouteHelper.NUEVAP);
+//		mV.addObject("listaDePersonas",personaService.getAll());
+//		
+//	
+//		
+//		
+//		return mV;	
+//	}
 
 	
-}
+//}

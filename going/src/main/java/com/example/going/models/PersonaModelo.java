@@ -83,9 +83,10 @@ public class PersonaModelo {
 	
 	
 
-	public PersonaModelo(@Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Email @Min(4) @Max(30) String email,
+	public PersonaModelo(int id,@Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Email @Min(4) @Max(30) String email,
 			Usuario usuario, AvatarModelo avatar) {
 		super();
+		this.id=id;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.email = email;

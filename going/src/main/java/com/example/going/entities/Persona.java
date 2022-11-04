@@ -293,8 +293,9 @@ public class Persona {
 
 
 
-	public Persona(String nombre, int edad, String email, Usuario usuario, Avatar avatar) {
+	public Persona(int id,String nombre, int edad, String email, Usuario usuario, Avatar avatar) {
 		super();
+		this.id=id;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.email = email;
