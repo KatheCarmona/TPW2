@@ -26,11 +26,11 @@ public class LocacionConverter {
 	}
 	
 	
-	public Set<LocacionModelo> entidadAModeloSet(Set<Locacion> paises){
+	public Set<LocacionModelo> entidadAModeloSet(Set<Locacion> lugar){
 		
 		Set<LocacionModelo>  lista = new HashSet<>();
 		
-		for(Locacion p: paises) {
+		for(Locacion p: lugar) {
 			
 			lista.add(entityToModel(p));
 			
@@ -42,11 +42,11 @@ public class LocacionConverter {
 	}
 	
 	
-	public Set<Locacion> modeloAEntidadSet(Set<LocacionModelo> paises){
+	public Set<Locacion> modeloAEntidadSet(Set<LocacionModelo> lugar){
 		
 		Set<Locacion>  lista = new HashSet<>();
 		
-		for(LocacionModelo p: paises) {
+		for(LocacionModelo p: lugar) {
 			
 			lista.add(modelToEntity(p));
 			

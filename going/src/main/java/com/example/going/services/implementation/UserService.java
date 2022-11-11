@@ -16,7 +16,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.going.converters.AvatarConverter;
+import com.example.going.converters.UsuarioConverter;
+import com.example.going.entities.Avatar;
+import com.example.going.entities.Usuario;
 import com.example.going.entities.UsuarioRol;
+import com.example.going.models.AvatarModelo;
+import com.example.going.models.UsuarioModelo;
 import com.example.going.repositories.IUserRepository;
 
 @Service("userService")
@@ -25,6 +31,11 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	@Qualifier("userRepository")
 	private IUserRepository userRepository;
+	
+	@Autowired
+	@Qualifier("usuarioConverter")
+	private UsuarioConverter usuarioConverter;
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -45,4 +56,13 @@ public class UserService implements UserDetailsService {
 		}
 		return new ArrayList<GrantedAuthority>(grantedAuthorities);
 	}
+	
+	
+	public UsuarioModelo insertOrUpdate(UsuarioModelo usuarioModelo) {
+		
+		Usuario usuario = userRepository.save(usuarioConverter.modelToEntity(usuarioModelo));
+		
+		return usuarioConverter.entityToModel(usuario);
+	}
+	
 }

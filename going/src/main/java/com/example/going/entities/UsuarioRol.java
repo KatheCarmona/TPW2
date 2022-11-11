@@ -104,6 +104,12 @@ public class UsuarioRol {
 		return rol;
 	}
 
+	public UsuarioRol(int id, String rol) {
+		super();
+		this.id = id;
+		this.rol = rol;
+	}
+
 	
 	
 	

@@ -27,7 +27,7 @@ public class PersonaModelo {
 	@Max(30)
 	private String email;
 	
-	private Usuario usuario;
+	private UsuarioModelo usuario;
 	
 	
 	private AvatarModelo avatar;
@@ -84,7 +84,7 @@ public class PersonaModelo {
 	
 
 	public PersonaModelo(int id,@Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Email @Min(4) @Max(30) String email,
-			Usuario usuario, AvatarModelo avatar) {
+			UsuarioModelo usuario, AvatarModelo avatar) {
 		super();
 		this.id=id;
 		this.nombre = nombre;
@@ -161,15 +161,17 @@ public class PersonaModelo {
 	}
 
 
-	public Usuario getUsuario() {
+	public UsuarioModelo getUsuario() {
 		return usuario;
 	}
 
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(UsuarioModelo usuario) {
 		this.usuario = usuario;
 	}
-	
+
+
+
 	
 	
 	

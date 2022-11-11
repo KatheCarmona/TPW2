@@ -19,6 +19,10 @@ public class PersonaConverter {
 	@Qualifier("locacionConverter")
 	private LocacionConverter locacionConverter;
 	
+	@Autowired
+	@Qualifier("usuarioConverter")
+	private UsuarioConverter usuarioConverter;
+	
 //	public PersonaModelo entityToModelSet(Persona persona) {
 //		
 //		
@@ -49,7 +53,7 @@ public class PersonaConverter {
 		
 		
 		return new PersonaModelo(persona.getId(),persona.getNombre(), persona.getEdad(), persona.getEmail(), 
-				persona.getUsuario(),avatarConverter.entityToModel(persona.getAvatar()));
+				usuarioConverter.entityToModel(persona.getUsuario()),avatarConverter.entityToModel(persona.getAvatar()));
 		
 		
 	}
@@ -60,7 +64,7 @@ public class PersonaConverter {
 		
 	
 		return new Persona(personaModelo.getId(),personaModelo.getNombre(),personaModelo.getEdad(),personaModelo.getEmail(),
-				personaModelo.getUsuario(),avatarConverter.modelToEntity(personaModelo.getAvatar()));
+				usuarioConverter.modelToEntity(personaModelo.getUsuario()),avatarConverter.modelToEntity(personaModelo.getAvatar()));
 		
 		
 	}

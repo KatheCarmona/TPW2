@@ -4,12 +4,14 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -49,7 +51,7 @@ public class Usuario {
 	private Persona persona;
 	
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="usuario")
 	@JsonIgnore
 	private Set<UsuarioRol> usuarioRols = new HashSet<UsuarioRol>();
 	
@@ -130,14 +132,6 @@ public class Usuario {
 		this.persona = persona;
 	}
 
-	public Set<UsuarioRol> getUsuarioRols() {
-		return usuarioRols;
-	}
-
-	public void setUsuarioRols(Set<UsuarioRol> usuarioRols) {
-		this.usuarioRols = usuarioRols;
-	}
-
 
 	public Usuario(int id, String username, String password, boolean enabled, LocalDateTime createdAt,
 			LocalDateTime updatedAt, Set<UsuarioRol> usuarioRols) {
@@ -158,16 +152,7 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public Usuario(int id, String username, String password, boolean enabled, Set<UsuarioRol> usuarioRols) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-		this.usuarioRols = usuarioRols;
-	}
-	
-	
+
 
 	public Usuario(int id, String username, String password, boolean enabled, LocalDateTime createdAt,
 			LocalDateTime updatedAt, Persona persona, Set<UsuarioRol> usuarioRols) {
@@ -192,10 +177,19 @@ public class Usuario {
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 	
-	public String getRol(){
+	public String getRol(){//Para la vista
 		String rol;
 		rol=this.usuarioRols.toString();
 		return rol;
+	}
+
+	public Usuario(int id, String username, String password, boolean enabled, Set<UsuarioRol> usuarioRols) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.usuarioRols = usuarioRols;
 	}
 	
 	

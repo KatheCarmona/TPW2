@@ -158,7 +158,7 @@ public class AdminController {
 		return mV;
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_1')")
 	@GetMapping("/eliminarPersona/{id}")
 	public ModelAndView  eliminarPersona(@PathVariable("id")int id, Model model) {	
 		
