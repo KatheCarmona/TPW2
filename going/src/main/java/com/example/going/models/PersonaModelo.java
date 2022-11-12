@@ -16,15 +16,15 @@ public class PersonaModelo {
 	
 	private int id;
 	
-	@Size(min=4, max =12)
+	//@Size(min=4, max =12)
 	private String nombre;
 	
 	@Min(0)
 	private int edad;
 	
 	@Email
-	@Min(4)
-	@Max(30)
+	//@Min(4)
+	//@Max(30)
 	private String email;
 	
 	private UsuarioModelo usuario;
@@ -56,7 +56,7 @@ public class PersonaModelo {
 	@Override
 	public String toString() {
 		return "PersonaModelo [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", email=" + email
-				+ ", avatar=" + avatar + "]";
+				+ ", avatar=" + avatar + "]" + usuario.getId();
 	}
 
 
@@ -83,7 +83,7 @@ public class PersonaModelo {
 	
 	
 
-	public PersonaModelo(int id,@Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Email @Min(4) @Max(30) String email,
+	public PersonaModelo(int id,@Size(min = 4, max = 12) String nombre, @Min(0) int edad, String email,
 			UsuarioModelo usuario, AvatarModelo avatar) {
 		super();
 		this.id=id;
@@ -95,7 +95,7 @@ public class PersonaModelo {
 	}
 
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email) {
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, String email) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -125,7 +125,7 @@ public class PersonaModelo {
 	}
 
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, @Min(4) @Max(30) String email, AvatarModelo avatar) {
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, String email, AvatarModelo avatar) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -140,7 +140,7 @@ public class PersonaModelo {
 
 
 	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad,
-			@Email @Min(4) @Max(30) String email,  Set<LocacionModelo> locaciones, AvatarModelo avatar) {
+			String email,  Set<LocacionModelo> locaciones, AvatarModelo avatar) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

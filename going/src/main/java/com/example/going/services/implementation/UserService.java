@@ -22,6 +22,7 @@ import com.example.going.entities.Avatar;
 import com.example.going.entities.Usuario;
 import com.example.going.entities.UsuarioRol;
 import com.example.going.models.AvatarModelo;
+import com.example.going.models.PersonaModelo;
 import com.example.going.models.UsuarioModelo;
 import com.example.going.repositories.IUserRepository;
 
@@ -64,5 +65,13 @@ public class UserService implements UserDetailsService {
 		
 		return usuarioConverter.entityToModel(usuario);
 	}
+	
+	public UsuarioModelo traerPorId(int id) {
+		
+		
+		return usuarioConverter.entityToModel(userRepository.findById(id));
+		
+	};
+	
 	
 }

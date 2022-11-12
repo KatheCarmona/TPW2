@@ -147,12 +147,16 @@
 						
 						<div class="form-group">
 						    <label></label>
-							<input type="text" class="form-control" placeholder="Nombre usuario">
+						 	<input type="hidden" th:field="*{usuario.id}">
+							<input type="text" class="form-control" placeholder="Nombre usuario" th:field="*{usuario.username}">
+							
+							<input type="text" class="form-control" placeholder="Contraseña" th:field="*{usuario.password}">
 						</div>
 						
 						<div class="form-group">
 						    <label></label>
-							<input type="text" class="form-control" placeholder="Rol">
+						  
+							<input type="text" class="form-control" placeholder="Rol" >
 						</div>
 						
 						<div class="form-group">

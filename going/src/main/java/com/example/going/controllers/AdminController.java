@@ -32,6 +32,8 @@ import com.example.going.entities.Locacion;
 import com.example.going.entities.Usuario;
 import com.example.going.helpers.ViewRouteHelper;
 import com.example.going.models.PersonaModelo;
+import com.example.going.models.UsuarioModelo;
+import com.example.going.models.UsuarioRolModelo;
 import com.example.going.services.IPersonaService;
 
 @Controller
@@ -47,7 +49,9 @@ public class AdminController {
 	@GetMapping("")
 	public ModelAndView  listaDePersonas(Model model) {	
 		
-		model.addAttribute("persona", new PersonaModelo()); //para crear personas
+		model.addAttribute("persona", new PersonaModelo());
+		model.addAttribute("usuario", new UsuarioModelo());
+		model.addAttribute("user_role", new UsuarioRolModelo());//para crear personas
 	
 		ModelAndView mV = new ModelAndView();
 		
@@ -94,14 +98,16 @@ public class AdminController {
 	public ModelAndView  editarPersona(@PathVariable("id")int id, Model model) {	
 		
 		
-		
+		Usuario usuario = personaService.traerUsuario(id);
 		PersonaModelo persona = personaService.traerPorId(id);
 
 		model.addAttribute("persona", persona);
+		model.addAttribute("usuario",usuario);
 		
 		
-		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.ADMINPAGE);
 		
+		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.NUEVAP);
+		modelAndView.addObject("listaDePersonas",personaService.getAll());
 		
 		return modelAndView;	
 	}
@@ -119,6 +125,7 @@ public class AdminController {
 		ModelAndView mV = new ModelAndView();
 		if(b.hasErrors()) {
 			mV.setViewName(ViewRouteHelper.ADMINPAGE);
+			System.out.println(b.getFieldErrors());
 			
 		}else {
 			

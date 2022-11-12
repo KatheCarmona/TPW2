@@ -62,7 +62,7 @@ public class PersonaConverter {
 	
 	public Persona modelToEntity(PersonaModelo personaModelo) {
 		
-	
+	personaModelo.toString();
 		return new Persona(personaModelo.getId(),personaModelo.getNombre(),personaModelo.getEdad(),personaModelo.getEmail(),
 				usuarioConverter.modelToEntity(personaModelo.getUsuario()),avatarConverter.modelToEntity(personaModelo.getAvatar()));
 		

@@ -12,7 +12,7 @@ public class UsuarioModelo {
 	private int id;
 	private String username;
 	private boolean enabled;
-	private Persona persona;
+	private PersonaModelo persona;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	private String password;
@@ -36,10 +36,10 @@ public class UsuarioModelo {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	public Persona getPersona() {
+	public PersonaModelo getPersona() {
 		return persona;
 	}
-	public void setPersona(Persona persona) {
+	public void setPersona(PersonaModelo persona) {
 		this.persona = persona;
 	}
 	public LocalDateTime getCreatedAt() {
@@ -55,7 +55,7 @@ public class UsuarioModelo {
 		this.updatedAt = updatedAt;
 	}
 
-	public UsuarioModelo(int id, String username, boolean enabled, Persona persona, LocalDateTime createdAt,
+	public UsuarioModelo(int id, String username, boolean enabled, PersonaModelo persona, LocalDateTime createdAt,
 			LocalDateTime updatedAt) {
 		super();
 		this.id = id;
@@ -76,7 +76,7 @@ public class UsuarioModelo {
 		return "UsuarioModelo [id=" + id + ", username=" + username + ", enabled=" + enabled + ", persona=" + persona
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", usuarioRols=" + usuarioRols + "]";
 	}
-	public UsuarioModelo(int id, String username, boolean enabled, Persona persona, Set<UsuarioRolModelo> usuarioRols) {
+	public UsuarioModelo(int id, String username, boolean enabled, PersonaModelo persona, Set<UsuarioRolModelo> usuarioRols) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -97,6 +97,9 @@ public class UsuarioModelo {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public UsuarioModelo() {
+		super();
 	}
 
 	
