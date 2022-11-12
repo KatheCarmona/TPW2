@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -149,8 +150,9 @@ public class AdminController {
 			}
 			
 			
-		
-			
+			BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+			persona.getUsuario().setPassword(pe.encode(persona.getUsuario().getPassword()));
+			persona.getUsuario().setEnabled(true);
 			personaService.insertOrUpdate(persona); 
 			
 			mV.setViewName(ViewRouteHelper.NUEVAP);
