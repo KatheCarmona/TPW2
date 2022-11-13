@@ -34,6 +34,9 @@
      <div class="navbar-brand">
     <!-- <p>Hola! <span th:text="${usuarios}"> -->
    <!--<p>Hola! <span th:text="${usuario.username}"/>-->
+        <form  th:action="@{/loginprocess}" method="post">
+	     <input type="submit"  class="btn btn-danger btn-sm" value="Logout" />
+	 </form>
 
     </div>
   </div>
@@ -46,13 +49,8 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
-      <h2>Logo</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Dashboard</a></li>
-        <li><a href="#section2">Age</a></li>
-        <li><a href="#section3">Gender</a></li>
-        <li><a href="#section3">Geo</a></li>
-      </ul><br>
+      <h2>Administrador</h2>
+     
     </div>
     <br>
     
@@ -122,7 +120,9 @@
 
 
 			<div class="row">
-				<form name="nuevo" th:action="@{/adminpage/editarUsuario/}+ ${persona.id}">
+				<form name="nuevo" th:action="@{/adminpage/editarUsuario/}+ ${persona.id}"
+						th:object="${persona}"  enctype="multipart/form-data">
+						
 					<div class="col-lg-offset-2 col-lg-8 text-center">
 					
         					<img 
@@ -132,22 +132,24 @@
 
 						<div class="form-group">
 							 <label></label>
-							<input type="text" th:value="${persona.nombre}" class="form-control">
+							<input type="text" th:value="${persona.nombre}" th:field="*{nombre}" class="form-control">
 						</div>
 						<div class="form-group">
 							    <label></label>
-							<input type="text" class="form-control" th:value="${persona.edad}">
+							<input type="text" class="form-control" th:value="${persona.edad}" th:field="*{edad}">
 						</div>
 						
 						<div class="form-group">
 						    <label></label>
-							<input type="email" class="form-control" th:value="${persona.email}">
+							<input type="email" class="form-control" th:value="${persona.email}" th:field="*{email}">
 						</div>
 						
 						<div class="form-group">
 						    <label></label>
+						    <input type="hidden" th:field="*{usuario.id}">
+						    <input type="hidden" th:field="*{usuario.password}">
 							<!--<input type="text" class="form-control" placeholder="Nombre usuario" th:text="${persona.usuario.username}"> -->
-							<input type="text" class="form-control" th:value="${usuario.username}">
+							<input type="text" class="form-control" th:value="${usuario.username}" th:field="*{usuario.username}">
 						</div>
 						
 						<div class="form-group">
@@ -165,7 +167,9 @@
 							<div class="input-group">
 								<span class="input-group-addon">
 								
-								<input type="text" class="form-control"  th:value="${persona.getAvatar().getImagen()}" >
+								<input type="hidden" th:field="*{avatar.id}">
+								
+								<input type="file" class="form-control"  th:file="*{avatar.imagen}" th:field="*{avatar.imagen}" name="file" id="imagen" >
 								<label></label>
 							</div>
 						</div>
