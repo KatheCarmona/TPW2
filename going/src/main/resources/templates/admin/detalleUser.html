@@ -170,7 +170,8 @@
 								<span class="input-group-addon">
 								
 								<input type="hidden" th:field="*{avatar.id}">
-								<input type="file" class="form-control"  th:value="*{avatar.imagen}" th:field="*{avatar.id}" name="file" id="imagen" >
+								
+								<input type="file" class="form-control"  th:file="*{avatar.imagen}" th:field="*{avatar.imagen}" name="file" id="imagen" >
 								<label></label>
 							</div>
 						</div>
