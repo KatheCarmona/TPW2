@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -94,24 +95,85 @@ public class AdminController {
 	
 	
 	
+//	@PreAuthorize("hasRole('ROLE_1')")
+//	@GetMapping("/editarUsuario/{id}")
+//	public ModelAndView  editarPersona(@PathVariable("id")int id, Model model) {	
+//		
+//		
+//		Usuario usuario = personaService.traerUsuario(id);
+//		PersonaModelo persona = personaService.traerPorId(id);
+//
+//		model.addAttribute("persona", persona);
+//		model.addAttribute("usuario",usuario);
+//		
+//		
+//		
+//		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.ADMINPAGE);
+//		modelAndView.addObject("listaDePersonas",personaService.getAll());
+//		
+//		return modelAndView;	
+//	}
+//	
+	
+	
 	@PreAuthorize("hasRole('ROLE_1')")
 	@GetMapping("/editarUsuario/{id}")
-	public ModelAndView  editarPersona(@PathVariable("id")int id, Model model) {	
+	public ModelAndView  editarPersona(@PathVariable("id")int id,@ModelAttribute("persona")PersonaModelo persona) {	
 		
 		
-		Usuario usuario = personaService.traerUsuario(id);
-		PersonaModelo persona = personaService.traerPorId(id);
+		
+		//PersonaModelo p = personaService.traerPorId(id);
 
-		model.addAttribute("persona", persona);
-		model.addAttribute("usuario",usuario);
+		ModelAndView mV = new ModelAndView();
+//		if(b.hasErrors()) {
+//			mV.setViewName(ViewRouteHelper.ADMINPAGE);
+//			System.out.println(b.getFieldErrors());
+//			
+//		}else {
+//			
+//			if(!imagen.isEmpty()) {
+//				
+//				Path directorioImagenes = Paths.get("src//main//resources//static/images");
+//				
+//				String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+//				
+//				try {
+//					byte[] bytesImg = imagen.getBytes();
+//					Path rutaCompleta = Paths.get(rutaAbsoluta + "//"+imagen.getOriginalFilename());
+//					Files.write(rutaCompleta, bytesImg);
+//					
+//					
+//					persona.getAvatar().setImagen(imagen.getOriginalFilename());
+//					//p.getAvatar().setImagen(persona.getAvatar().getImagen());
+//					
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+			
+			
+			//BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+			//persona.getUsuario().setPassword(pe.encode(persona.getUsuario().getPassword()));
+			//p.getUsuario().setPassword(persona.getUsuario().getPassword());
+			
+			//persona.getUsuario().setEnabled(true);
+			personaService.insertOrUpdate(persona); 
+			
+			mV.setViewName(ViewRouteHelper.NUEVAP);
+			mV.addObject("persona", persona);
+			
+			
+			mV.addObject("listaDePersonas",personaService.getAll());
+				
+
 		
-		
-		
-		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.NUEVAP);
-		modelAndView.addObject("listaDePersonas",personaService.getAll());
-		
-		return modelAndView;	
+			
+		return mV;
 	}
+
+	
+	
 	
 	
 	
