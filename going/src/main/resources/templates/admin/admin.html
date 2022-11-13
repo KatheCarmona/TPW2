@@ -34,6 +34,9 @@
      <div class="navbar-brand">
     <!-- <p>Hola! <span th:text="${usuarios}"> -->
    <!--<p>Hola! <span th:text="${usuario.username}"/>-->
+       <form  th:action="@{/loginprocess}" method="post">
+	     <input type="submit"  class="btn btn-danger btn-sm" value="Logout" />
+	 </form>
 
     </div>
   </div>
@@ -46,13 +49,8 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
-      <h2>Logo</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Dashboard</a></li>
-        <li><a href="#section2">Age</a></li>
-        <li><a href="#section3">Gender</a></li>
-        <li><a href="#section3">Geo</a></li>
-      </ul><br>
+      <h2>Administrador</h2>
+     
     </div>
     <br>
     
@@ -137,7 +135,7 @@
 						</div>
 						<div class="form-group">
 							    <label></label>
-							<input type="text" class="form-control" placeholder="Edad" th:field="*{edad}">
+							<input type="int" class="form-control" placeholder="Edad" th:field="*{edad}">
 						</div>
 						
 						<div class="form-group">
@@ -149,7 +147,7 @@
 						    <label></label>
 						 	<input type="hidden" th:field="*{usuario.id}">
 							<input type="text" class="form-control" placeholder="Nombre usuario" th:field="*{usuario.username}">
-							
+							 <label></label>
 							<input type="text" class="form-control" placeholder="Contraseña" th:field="*{usuario.password}">
 						</div>
 						

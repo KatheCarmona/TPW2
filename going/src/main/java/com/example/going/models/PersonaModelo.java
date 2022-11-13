@@ -83,7 +83,7 @@ public class PersonaModelo {
 	
 	
 
-	public PersonaModelo(int id,@Size(min = 4, max = 12) String nombre, @Min(0) int edad, String email,
+	public PersonaModelo(int id,@Size(min = 4, max = 12) String nombre, int edad, String email,
 			UsuarioModelo usuario, AvatarModelo avatar) {
 		super();
 		this.id=id;
@@ -95,7 +95,7 @@ public class PersonaModelo {
 	}
 
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, String email) {
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, int edad, String email) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -125,7 +125,7 @@ public class PersonaModelo {
 	}
 
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad, String email, AvatarModelo avatar) {
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, int edad, String email, AvatarModelo avatar) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -139,7 +139,7 @@ public class PersonaModelo {
 
 
 
-	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, @Min(0) int edad,
+	public PersonaModelo(int id, @Size(min = 4, max = 12) String nombre, int edad,
 			String email,  Set<LocacionModelo> locaciones, AvatarModelo avatar) {
 		super();
 		this.id = id;

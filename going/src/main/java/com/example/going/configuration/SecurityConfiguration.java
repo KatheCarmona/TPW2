@@ -38,6 +38,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.formLogin().loginPage("/home").loginProcessingUrl("/loginprocess")
 				.usernameParameter("username").passwordParameter("password")
 				.defaultSuccessUrl("/adminpage").permitAll()
+				//.defaultSuccessUrl("/explorar").permitAll()
+				//.successForwardUrl("/explorar").permitAll()
+				
 				
 			.and()
 				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();

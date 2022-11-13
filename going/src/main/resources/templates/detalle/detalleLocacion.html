@@ -32,8 +32,9 @@
       </li>
     </ul>
      <div class="navbar-brand">
-      <p>Hola! <span th:text="${usuarios}"> 
-  </button>
+      <form  th:action="@{/loginprocess}" method="post">
+	     <input type="submit"  class="btn btn-danger btn-sm" value="Logout" />
+	 </form>
     </div>
   </div>
 </nav>

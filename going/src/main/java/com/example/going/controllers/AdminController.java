@@ -116,6 +116,7 @@ public class AdminController {
 				persona.getAvatar().setImagen(p.getAvatar().getImagen()); //Para que no pierda la imagen si no la edito
 			}
 			
+			persona.getUsuario().setEnabled(true);
 			personaService.insertOrUpdate(persona); 
 			
 			mV.setViewName(ViewRouteHelper.NUEVAP);
