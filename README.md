@@ -8,3 +8,9 @@ DIAGRAMA DE CLASES
 COBERTURA DE PRUEBAS
 ![image](https://user-images.githubusercontent.com/102928927/223165333-4687a3f1-e305-44dd-8216-c064b66aaa58.png)
 
+ACCESOS
+
+URL: localhost:8080/home
+ADMIN -> USER: ka PASS: 12345678
+USUARIO COMUN -> USER: kc PASS: 12345678
+
