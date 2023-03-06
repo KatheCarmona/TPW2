@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Locacion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.entities</a> &gt; <span class="el_source">Locacion.java</span></div><h1>Locacion.java</h1><pre class="source lang-java linenums">package com.example.going.entities;
+
+
+
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.EqualsAndHashCode;
+
+
+
+
+@Entity
+<span class="pc bpc" id="L28" title="5 of 6 branches missed.">@EqualsAndHashCode(onlyExplicitlyIncluded = true)</span>
+@Table(name=&quot;locacion&quot;)
+public class Locacion {
+
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String nombre;
+	private int valoracion;
+	private String direccion;
+	private String descripcion;
+
+<span class="pc" id="L41">	 @ManyToMany(mappedBy = &quot;locaciones&quot;)</span>
+	 @JsonIgnoreProperties(&quot;locaciones&quot;)
+	    public Set&lt;Persona&gt; persona = new HashSet&lt;&gt;();
+	 
+<span class="pc" id="L45">	@OneToMany(mappedBy = &quot;locacion&quot;, cascade = CascadeType.ALL)</span>
+	@JsonManagedReference
+	private Set&lt;Comentarios&gt; comentarios = new HashSet&lt;&gt;();;
+	
+<span class="pc" id="L49">	@OneToMany(mappedBy = &quot;locacion&quot;, cascade = CascadeType.ALL)</span>
+	@JsonManagedReference
+	private Set&lt;Fotos&gt; fotos = new HashSet&lt;&gt;();;
+	
+	
+	public Set&lt;Comentarios&gt; getComentarios() {
+<span class="fc" id="L55">		return comentarios;</span>
+	}
+
+	public void setComentarios(Set&lt;Comentarios&gt; comentarios) {
+<span class="nc" id="L59">		this.comentarios = comentarios;</span>
+<span class="nc" id="L60">	}</span>
+
+	public int getId() {
+<span class="fc" id="L63">		return id;</span>
+	}
+
+	public void setId(int id) {
+<span class="nc" id="L67">		this.id = id;</span>
+<span class="nc" id="L68">	}</span>
+
+	public String getNombre() {
+<span class="fc" id="L71">		return nombre;</span>
+	}
+
+	public void setNombre(String nombre) {
+<span class="nc" id="L75">		this.nombre = nombre;</span>
+<span class="nc" id="L76">	}</span>
+
+	public int getValoracion() {
+<span class="fc" id="L79">		return valoracion;</span>
+	}
+
+	public void setValoracion(int valoracion) {
+<span class="nc" id="L83">		this.valoracion = valoracion;</span>
+<span class="nc" id="L84">	}</span>
+	
+	public Set&lt;Persona&gt; getPersona() {
+<span class="nc" id="L87">		return persona;</span>
+	}
+
+	public void setPersona(Set&lt;Persona&gt; persona) {
+<span class="nc" id="L91">		this.persona = persona;</span>
+<span class="nc" id="L92">	}</span>
+
+	public String getDireccion() {
+<span class="fc" id="L95">		return direccion;</span>
+	}
+
+
+	public void setDireccion(String direccion) {
+<span class="nc" id="L100">		this.direccion = direccion;</span>
+<span class="nc" id="L101">	}</span>
+	
+	
+	
+	public Locacion() {
+<span class="fc" id="L106">		super();</span>
+	
+<span class="fc" id="L108">	}</span>
+	
+
+	public Locacion(int id, String nombre, String direccion, String descripcion) {
+<span class="nc" id="L112">		super();</span>
+<span class="nc" id="L113">		this.id = id;</span>
+<span class="nc" id="L114">		this.nombre = nombre;</span>
+<span class="nc" id="L115">		this.direccion = direccion;</span>
+<span class="nc" id="L116">		this.descripcion = descripcion;</span>
+<span class="nc" id="L117">	}</span>
+
+	public Locacion(int id, String nombre, int valoracion, Set&lt;Persona&gt; persona) {
+<span class="nc" id="L120">		super();</span>
+<span class="nc" id="L121">		this.id = id;</span>
+<span class="nc" id="L122">		this.nombre = nombre;</span>
+<span class="nc" id="L123">		this.valoracion = valoracion;</span>
+<span class="nc" id="L124">		this.persona = persona;</span>
+<span class="nc" id="L125">	}</span>
+	
+	public Locacion(int id, String nombre, int valoracion) {
+<span class="nc" id="L128">		super();</span>
+<span class="nc" id="L129">		this.id = id;</span>
+<span class="nc" id="L130">		this.nombre = nombre;</span>
+<span class="nc" id="L131">		this.valoracion = valoracion;</span>
+<span class="nc" id="L132">		this.persona =  new HashSet&lt;&gt;();</span>
+<span class="nc" id="L133">	}</span>
+
+
+
+	public Locacion(int id, String nombre, int valoracion, String direccion, Set&lt;Persona&gt; persona) {
+<span class="nc" id="L138">		super();</span>
+<span class="nc" id="L139">		this.id = id;</span>
+<span class="nc" id="L140">		this.nombre = nombre;</span>
+<span class="nc" id="L141">		this.valoracion = valoracion;</span>
+<span class="nc" id="L142">		this.direccion = direccion;</span>
+<span class="nc" id="L143">		this.persona = persona;</span>
+<span class="nc" id="L144">	}</span>
+	
+
+	public Locacion(int id, String nombre, int valoracion, String direccion, Set&lt;Persona&gt; persona,
+			Set&lt;Comentarios&gt; comentarios) {
+<span class="nc" id="L149">		super();</span>
+<span class="nc" id="L150">		this.id = id;</span>
+<span class="nc" id="L151">		this.nombre = nombre;</span>
+<span class="nc" id="L152">		this.valoracion = valoracion;</span>
+<span class="nc" id="L153">		this.direccion = direccion;</span>
+<span class="nc" id="L154">		this.persona = persona;</span>
+<span class="nc" id="L155">		this.comentarios = comentarios;</span>
+<span class="nc" id="L156">	}</span>
+	
+	
+
+	public Set&lt;Fotos&gt; getFotos() {
+<span class="fc" id="L161">		return fotos;</span>
+	}
+	
+	public String getUnaFoto() {
+<span class="nc" id="L165">		Fotos fto1 = new Fotos();</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">		for (Fotos fto: this.fotos) {</span>
+<span class="nc" id="L167">			fto1= fto;</span>
+<span class="nc" id="L168">		}</span>
+		
+<span class="nc" id="L170">		return fto1.getImagen();</span>
+	}
+
+	public void setFotos(Set&lt;Fotos&gt; fotos) {
+<span class="nc bnc" id="L174" title="All 2 branches missed.">		for(Fotos item: fotos) {</span>
+<span class="nc" id="L175">			item.setLocacion(this);</span>
+<span class="nc" id="L176">		}</span>
+<span class="nc" id="L177">		this.fotos = fotos;</span>
+<span class="nc" id="L178">	}</span>
+
+	
+	public Locacion(int id, String nombre, int valoracion, String direccion, Set&lt;Persona&gt; persona,
+			Set&lt;Comentarios&gt; comentarios, Set&lt;Fotos&gt; fotos) {
+<span class="nc" id="L183">		super();</span>
+<span class="nc" id="L184">		this.id = id;</span>
+<span class="nc" id="L185">		this.nombre = nombre;</span>
+<span class="nc" id="L186">		this.valoracion = valoracion;</span>
+<span class="nc" id="L187">		this.direccion = direccion;</span>
+<span class="nc" id="L188">		this.persona = persona;</span>
+<span class="nc" id="L189">		this.comentarios = comentarios;</span>
+<span class="nc" id="L190">		this.fotos = fotos;</span>
+<span class="nc" id="L191">	}</span>
+
+	@Override
+	public String toString() {
+<span class="nc" id="L195">		return &quot;Pais [id=&quot; + id + &quot;, nombre=&quot; + nombre + &quot;, valoracion=&quot; + valoracion + &quot;]&quot;;</span>
+	}
+
+	public String getDescripcion() {
+<span class="fc" id="L199">		return descripcion;</span>
+	}
+
+	public void setDescripcion(String descripcion) {
+<span class="nc" id="L203">		this.descripcion = descripcion;</span>
+<span class="nc" id="L204">	}</span>
+
+	public Locacion(int id, String nombre, int valoracion, String direccion, String descripcion,
+			Set&lt;Comentarios&gt; comentarios, Set&lt;Fotos&gt; fotos) {
+<span class="fc" id="L208">		super();</span>
+<span class="fc" id="L209">		this.id = id;</span>
+<span class="fc" id="L210">		this.nombre = nombre;</span>
+<span class="fc" id="L211">		this.valoracion = valoracion;</span>
+<span class="fc" id="L212">		this.direccion = direccion;</span>
+<span class="fc" id="L213">		this.descripcion = descripcion;</span>
+<span class="fc" id="L214">		this.comentarios = comentarios;</span>
+<span class="fc" id="L215">		this.fotos = fotos;</span>
+<span class="fc" id="L216">	}</span>
+	
+
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

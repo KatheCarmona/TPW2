@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.services.implementation</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package com.example.going.services.implementation;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.example.going.converters.AvatarConverter;
+import com.example.going.converters.UsuarioConverter;
+import com.example.going.entities.Avatar;
+import com.example.going.entities.Usuario;
+import com.example.going.entities.UsuarioRol;
+import com.example.going.models.AvatarModelo;
+import com.example.going.models.PersonaModelo;
+import com.example.going.models.UsuarioModelo;
+import com.example.going.repositories.IUserRepository;
+
+@Service(&quot;userService&quot;)
+<span class="fc" id="L30">public class UserService implements UserDetailsService {</span>
+
+	@Autowired
+	@Qualifier(&quot;userRepository&quot;)
+	private IUserRepository userRepository;
+	
+	@Autowired
+	@Qualifier(&quot;usuarioConverter&quot;)
+	private UsuarioConverter usuarioConverter;
+	
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+<span class="nc" id="L43">		com.example.going.entities.Usuario usuario = userRepository.findByUsernameAndFetchUserRolesEagerly(username);</span>
+<span class="nc" id="L44">		return buildUser(usuario, buildGrantedAuthorities(usuario.getUserRoles()));</span>
+	}
+	
+	private User buildUser(com.example.going.entities.Usuario usuario, List&lt;GrantedAuthority&gt; grantedAuthorities) {
+<span class="nc" id="L48">		return new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(),</span>
+						true, true, true, //accountNonExpired, credentialsNonExpired, accountNonLocked,
+						grantedAuthorities);
+	}
+	
+	private List&lt;GrantedAuthority&gt; buildGrantedAuthorities(Set&lt;UsuarioRol&gt; usuarioRols) {
+<span class="nc" id="L54">		Set&lt;GrantedAuthority&gt; grantedAuthorities = new HashSet&lt;GrantedAuthority&gt;();</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		for(UsuarioRol usuarioRol: usuarioRols) {</span>
+<span class="nc" id="L56">			grantedAuthorities.add(new SimpleGrantedAuthority(usuarioRol.getRol()));</span>
+<span class="nc" id="L57">		}</span>
+<span class="nc" id="L58">		return new ArrayList&lt;GrantedAuthority&gt;(grantedAuthorities);</span>
+	}
+	
+	
+	public UsuarioModelo insertOrUpdate(UsuarioModelo usuarioModelo) {
+		
+<span class="nc" id="L64">		Usuario usuario = userRepository.save(usuarioConverter.modelToEntity(usuarioModelo));</span>
+		
+<span class="nc" id="L66">		return usuarioConverter.entityToModel(usuario);</span>
+	}
+	
+	public UsuarioModelo traerPorId(int id) {
+		
+		
+<span class="nc" id="L72">		return usuarioConverter.entityToModel(userRepository.findById(id));</span>
+		
+	};
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

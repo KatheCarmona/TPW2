@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Persona.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.entities</a> &gt; <span class="el_source">Persona.java</span></div><h1>Persona.java</h1><pre class="source lang-java linenums">package com.example.going.entities;
+
+import java.time.LocalDateTime;
+
+import java.util.HashSet;
+
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+import lombok.EqualsAndHashCode;
+
+
+@Entity
+<span class="nc bnc" id="L34" title="All 6 branches missed.">@EqualsAndHashCode(onlyExplicitlyIncluded = true)</span>
+@Table(name=&quot;persona&quot;)
+public class Persona {
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+
+	@Column(name=&quot;nombre&quot;)
+	private String nombre;
+	
+	@Column(name=&quot;edad&quot;)
+	private int edad;
+	
+	@Column(name=&quot;email&quot;)
+	private String email;
+	
+	@Column(name=&quot;locacion&quot;)
+	private String locacion;
+	
+
+	@Column(name=&quot;creado&quot;)
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	
+	@Column(name=&quot;actualizado&quot;)
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+	
+
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = &quot;avatar_id&quot;, referencedColumnName = &quot;id&quot;)
+	@JsonIgnore
+	private Avatar avatar;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = &quot;usuario_id&quot;, referencedColumnName = &quot;id&quot;)
+	@JsonIgnore
+	private Usuario usuario;
+	
+
+
+<span class="pc" id="L78">	@ManyToMany(cascade = {</span>
+	            CascadeType.PERSIST,
+	            CascadeType.MERGE
+	  })
+	    @JoinTable(name = &quot;persona_locacion&quot;,
+	            joinColumns = @JoinColumn(name = &quot;persona_id&quot;),
+	            inverseJoinColumns = @JoinColumn(name = &quot;locacion_id&quot;)
+	  )
+	 @JsonIgnoreProperties(&quot;persona&quot;)
+	private Set&lt;Locacion&gt; locaciones = new HashSet&lt;&gt;();
+	 
+
+
+	public Persona(int id, String nombre, int edad, String email, String locacion) {
+<span class="nc" id="L92">		super();</span>
+<span class="nc" id="L93">		this.id = id;</span>
+<span class="nc" id="L94">		this.nombre = nombre;</span>
+<span class="nc" id="L95">		this.edad = edad;</span>
+<span class="nc" id="L96">		this.email = email;</span>
+<span class="nc" id="L97">		this.locacion = locacion;</span>
+<span class="nc" id="L98">	}</span>
+	
+	
+
+	public Persona() {
+<span class="fc" id="L103">		super();</span>
+<span class="fc" id="L104">	}</span>
+
+
+
+	public int getId() {
+<span class="fc" id="L109">		return id;</span>
+	}
+
+	public void setId(int id) {
+<span class="nc" id="L113">		this.id = id;</span>
+<span class="nc" id="L114">	}</span>
+
+	public String getNombre() {
+<span class="fc" id="L117">		return nombre;</span>
+	}
+
+	public void setNombre(String nombre) {
+<span class="nc" id="L121">		this.nombre = nombre;</span>
+<span class="nc" id="L122">	}</span>
+
+	public int getEdad() {
+<span class="nc" id="L125">		return edad;</span>
+	}
+
+	public void setEdad(int edad) {
+<span class="nc" id="L129">		this.edad = edad;</span>
+<span class="nc" id="L130">	}</span>
+
+	public String getEmail() {
+<span class="fc" id="L133">		return email;</span>
+	}
+
+	public void setEmail(String email) {
+<span class="nc" id="L137">		this.email = email;</span>
+<span class="nc" id="L138">	}</span>
+
+	public String getLocacion() {
+<span class="nc" id="L141">		return locacion;</span>
+	}
+
+	public void setLocacion(String locacion) {
+<span class="nc" id="L145">		this.locacion = locacion;</span>
+<span class="nc" id="L146">	}</span>
+
+	public LocalDateTime getCreatedAt() {
+<span class="nc" id="L149">		return createdAt;</span>
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+<span class="nc" id="L153">		this.createdAt = createdAt;</span>
+<span class="nc" id="L154">	}</span>
+
+	public LocalDateTime getUpdatedAt() {
+<span class="nc" id="L157">		return updatedAt;</span>
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+<span class="nc" id="L161">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L162">	}</span>
+	
+	 public Usuario getUsuario() {
+<span class="nc" id="L165">		return usuario;</span>
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+<span class="nc" id="L171">		this.usuario = usuario;</span>
+<span class="nc" id="L172">	}</span>
+	
+	
+
+
+	public Persona(int id, String nombre, int edad, String email) {
+<span class="fc" id="L178">		super();</span>
+<span class="fc" id="L179">		this.id = id;</span>
+<span class="fc" id="L180">		this.nombre = nombre;</span>
+<span class="fc" id="L181">		this.edad = edad;</span>
+<span class="fc" id="L182">		this.email = email;</span>
+<span class="fc" id="L183">	}</span>
+
+
+
+	public Persona(int id, String nombre, int edad, String email, String locacion, Avatar avatar) {
+<span class="fc" id="L188">		super();</span>
+<span class="fc" id="L189">		this.id = id;</span>
+<span class="fc" id="L190">		this.nombre = nombre;</span>
+<span class="fc" id="L191">		this.edad = edad;</span>
+<span class="fc" id="L192">		this.email = email;</span>
+<span class="fc" id="L193">		this.locacion = locacion;</span>
+<span class="fc" id="L194">		this.avatar = avatar;</span>
+<span class="fc" id="L195">	}</span>
+
+
+
+	public Avatar getAvatar() {
+<span class="nc" id="L200">		return avatar;</span>
+	}
+
+
+
+	public void setAvatar(Avatar avatar) {
+<span class="nc" id="L206">		this.avatar = avatar;</span>
+<span class="nc" id="L207">	}</span>
+
+
+	
+
+	public Set&lt;Locacion&gt; getLocaciones() {
+<span class="nc" id="L213">		return locaciones;</span>
+	}
+
+
+
+	public void setLocaciones(Set&lt;Locacion&gt; locaciones) {
+<span class="nc" id="L219">		this.locaciones = locaciones;</span>
+<span class="nc" id="L220">	}</span>
+
+
+
+	public Persona(int id, String nombre, int edad, String email, String locacion, LocalDateTime createdAt,
+			LocalDateTime updatedAt, Avatar avatar,Set&lt;Locacion&gt; locaciones) {
+<span class="nc" id="L226">		super();</span>
+<span class="nc" id="L227">		this.id = id;</span>
+<span class="nc" id="L228">		this.nombre = nombre;</span>
+<span class="nc" id="L229">		this.edad = edad;</span>
+<span class="nc" id="L230">		this.email = email;</span>
+<span class="nc" id="L231">		this.locacion = locacion;</span>
+<span class="nc" id="L232">		this.createdAt = createdAt;</span>
+<span class="nc" id="L233">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L234">		this.avatar = avatar;</span>
+<span class="nc" id="L235">		this.locaciones = locaciones;</span>
+<span class="nc" id="L236">	}</span>
+	
+	
+	
+	public Persona(int id, String nombre, int edad, String email,  Avatar avatar, Set&lt;Locacion&gt; locaciones) {
+<span class="fc" id="L241">		super();</span>
+<span class="fc" id="L242">		this.id = id;</span>
+<span class="fc" id="L243">		this.nombre = nombre;</span>
+<span class="fc" id="L244">		this.edad = edad;</span>
+<span class="fc" id="L245">		this.email = email;</span>
+
+	
+<span class="fc" id="L248">		this.avatar = avatar;</span>
+	
+<span class="fc" id="L250">		this.locaciones = locaciones;</span>
+<span class="fc" id="L251">	}</span>
+	
+	
+
+
+
+	public Persona(int id, String nombre, int edad, String email, String locacion, LocalDateTime createdAt,
+			LocalDateTime updatedAt, Avatar avatar, Usuario usuario, Set&lt;Locacion&gt; locaciones) {
+<span class="nc" id="L259">		super();</span>
+<span class="nc" id="L260">		this.id = id;</span>
+<span class="nc" id="L261">		this.nombre = nombre;</span>
+<span class="nc" id="L262">		this.edad = edad;</span>
+<span class="nc" id="L263">		this.email = email;</span>
+<span class="nc" id="L264">		this.locacion = locacion;</span>
+<span class="nc" id="L265">		this.createdAt = createdAt;</span>
+<span class="nc" id="L266">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L267">		this.avatar = avatar;</span>
+<span class="nc" id="L268">		this.usuario = usuario;</span>
+<span class="nc" id="L269">		this.locaciones = locaciones;</span>
+<span class="nc" id="L270">	}</span>
+	
+	public Persona(int id, String nombre, int edad, String email, LocalDateTime createdAt,
+			LocalDateTime updatedAt, Avatar avatar, Usuario usuario, Set&lt;Locacion&gt; locaciones) {
+<span class="nc" id="L274">		super();</span>
+<span class="nc" id="L275">		this.id = id;</span>
+<span class="nc" id="L276">		this.nombre = nombre;</span>
+<span class="nc" id="L277">		this.edad = edad;</span>
+<span class="nc" id="L278">		this.email = email;</span>
+<span class="nc" id="L279">		this.createdAt = createdAt;</span>
+<span class="nc" id="L280">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L281">		this.avatar = avatar;</span>
+<span class="nc" id="L282">		this.usuario = usuario;</span>
+<span class="nc" id="L283">		this.locaciones = locaciones;</span>
+<span class="nc" id="L284">	}</span>
+
+
+
+	@Override
+	public String toString() {
+<span class="nc" id="L290">		return &quot;Persona [id=&quot; + id + &quot;, nombre=&quot; + nombre + &quot;, edad=&quot; + edad + &quot;, email=&quot; + email + &quot;, locacion=&quot; + locacion</span>
+				+ &quot;, createdAt=&quot; + createdAt + &quot;, updatedAt=&quot; + updatedAt;
+	}
+
+
+
+	public Persona(int id, String nombre, int edad, String email, Set&lt;Locacion&gt; locaciones, Avatar avatar) {
+<span class="fc" id="L297">		super();</span>
+<span class="fc" id="L298">		this.id = id;</span>
+<span class="fc" id="L299">		this.nombre = nombre;</span>
+<span class="fc" id="L300">		this.edad = edad;</span>
+<span class="fc" id="L301">		this.email = email;</span>
+<span class="fc" id="L302">		this.avatar = avatar;</span>
+<span class="fc" id="L303">		this.locaciones = locaciones;</span>
+<span class="fc" id="L304">	}</span>
+
+
+
+	public Persona(int id,String nombre, int edad, String email, Usuario usuario, Avatar avatar) {
+<span class="fc" id="L309">		super();</span>
+<span class="fc" id="L310">		this.id=id;</span>
+<span class="fc" id="L311">		this.nombre = nombre;</span>
+<span class="fc" id="L312">		this.edad = edad;</span>
+<span class="fc" id="L313">		this.email = email;</span>
+<span class="fc" id="L314">		this.avatar = avatar;</span>
+<span class="fc" id="L315">		this.usuario = usuario;</span>
+<span class="fc" id="L316">	}</span>
+
+
+
+	
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

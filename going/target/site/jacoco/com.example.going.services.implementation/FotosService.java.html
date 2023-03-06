@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FotosService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.services.implementation</a> &gt; <span class="el_source">FotosService.java</span></div><h1>FotosService.java</h1><pre class="source lang-java linenums">package com.example.going.services.implementation;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.example.going.converters.FotosConverter;
+import com.example.going.entities.Fotos;
+import com.example.going.models.FotosModelo;
+import com.example.going.repositories.IFotosRepository;
+import com.example.going.services.IFotosService;
+
+@Service(&quot;fotosService&quot;)
+<span class="fc" id="L16">public class FotosService implements IFotosService {</span>
+
+	@Autowired
+	@Qualifier(&quot;fotosRepository&quot;)
+	private IFotosRepository fotosRepository;
+	
+	@Autowired
+	@Qualifier(&quot;fotosConverter&quot;)
+	private FotosConverter fotosConverter;
+	
+	
+	@Override
+	public List&lt;Fotos&gt; getAll() {
+
+<span class="nc" id="L30">		return fotosRepository.findAll();</span>
+	}
+
+	@Override
+	public FotosModelo insertOrUpdate(FotosModelo fotosModelo) {
+<span class="nc" id="L35">		Fotos foto = fotosRepository.save(fotosConverter.ModelToEntity(fotosModelo));</span>
+<span class="nc" id="L36">		return fotosConverter.entityToModel(foto);</span>
+	}
+
+	@Override
+	public boolean remove(int id) {
+		try {
+<span class="nc" id="L42">			fotosRepository.deleteById(id);</span>
+<span class="nc" id="L43">			return true;</span>
+<span class="nc" id="L44">		}catch (Exception e) {</span>
+<span class="nc" id="L45">			return false;</span>
+		}	}
+
+	
+	@Override
+	public boolean setIdLoc(int idLoc) {
+		try {
+			//fotosRepository.updateFotoLoc(idLoc);
+<span class="nc" id="L53">			return true;</span>
+<span class="nc" id="L54">		}catch (Exception e) {</span>
+<span class="nc" id="L55">			return false;</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

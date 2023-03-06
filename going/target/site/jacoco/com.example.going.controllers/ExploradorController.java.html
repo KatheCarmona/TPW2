@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExploradorController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.controllers</a> &gt; <span class="el_source">ExploradorController.java</span></div><h1>ExploradorController.java</h1><pre class="source lang-java linenums">package com.example.going.controllers;
+
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.example.going.entities.Comentarios;
+import com.example.going.entities.Fotos;
+import com.example.going.entities.Locacion;
+import com.example.going.entities.Usuario;
+import com.example.going.helpers.ViewRouteHelper;
+import com.example.going.models.LocacionModelo;
+import com.example.going.models.PersonaModelo;
+import com.example.going.services.ILocacionService;
+import com.example.going.services.IPersonaService;
+import com.example.going.services.implementation.UserService;
+
+
+@Controller
+@RequestMapping(&quot;explorar&quot;)
+<span class="fc" id="L33">public class ExploradorController {</span>
+	
+	@Autowired
+	@Qualifier(&quot;locacionService&quot;)
+	private ILocacionService locacionService;
+	
+	
+
+	@GetMapping(&quot;&quot;)
+	public ModelAndView  explorador() {
+<span class="nc" id="L43">		 User usuario = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();</span>
+		
+<span class="nc" id="L45">		ModelAndView mV = new ModelAndView();</span>
+<span class="nc" id="L46">		mV.setViewName(ViewRouteHelper.EXPLO);</span>
+<span class="nc" id="L47">		mV.addObject(&quot;locaciones&quot;,locacionService.getAll());</span>
+<span class="nc" id="L48">		mV.addObject(&quot;usuarios&quot;, usuario.getUsername());</span>
+		
+<span class="nc" id="L50">			return mV;</span>
+		
+		
+	}
+	
+	
+	
+	//@PreAuthorize(&quot;hasRole('ROLE_1')&quot;)
+	@GetMapping(&quot;/detalleLocacion/{id}&quot;)
+	public ModelAndView  detalles(@PathVariable(&quot;id&quot;)int id, Model model) {	
+		
+
+<span class="nc" id="L62">		LocacionModelo locacion = locacionService.traerPorId(id);</span>
+		
+		
+<span class="nc" id="L65">		Set&lt;Fotos&gt; fotos = locacionService.fotosDeLaLocacion(id);</span>
+<span class="nc" id="L66">		Set&lt;Comentarios&gt; comentarios = locacionService.comentariosDeLaLocacion(id);</span>
+		
+
+		
+		
+
+<span class="nc" id="L72">		model.addAttribute(&quot;lugar&quot;, locacion);</span>
+<span class="nc" id="L73">		model.addAttribute(&quot;fotos&quot;,fotos);</span>
+<span class="nc" id="L74">		model.addAttribute(&quot;comentarios&quot;,comentarios);</span>
+<span class="nc" id="L75">		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.DETALLELOC);</span>
+<span class="nc" id="L76">		modelAndView.addObject(&quot;locaciones&quot;,locacionService.getAll());</span>
+		
+<span class="nc" id="L78">		return modelAndView;	</span>
+	}
+	
+	
+	
+	//@PreAuthorize(&quot;hasRole('ROLE_1')&quot;)
+	@GetMapping(&quot;/eliminarLocacion/{id}&quot;)
+	public ModelAndView  eliminarLocacion(@PathVariable(&quot;id&quot;)int id, Model model) {	
+		
+	
+<span class="nc" id="L88">		locacionService.remove(id);</span>
+		
+<span class="nc" id="L90">		ModelAndView mV = new ModelAndView();</span>
+		
+<span class="nc" id="L92">		mV.setViewName(ViewRouteHelper.ELIMINARlOC);</span>
+<span class="nc" id="L93">		mV.addObject(&quot;locaciones&quot;,locacionService.getAll());</span>
+		
+	
+		
+		
+<span class="nc" id="L98">		return mV;	</span>
+	}
+	
+	
+	
+	@GetMapping(&quot;/editarLoc/{id}&quot;)
+	public ModelAndView editarLoc(@PathVariable(&quot;id&quot;)int id, Model model) {	
+		
+		
+		
+<span class="nc" id="L108">		LocacionModelo locacion = locacionService.traerPorId(id);</span>
+		
+		
+<span class="nc" id="L111">		Set&lt;Fotos&gt; fotos = locacionService.fotosDeLaLocacion(id);</span>
+		
+
+<span class="nc" id="L114">		model.addAttribute(&quot;locacion&quot;, locacion);</span>
+<span class="nc" id="L115">		model.addAttribute(&quot;fotos&quot;,fotos);</span>
+
+		
+		
+<span class="nc" id="L119">		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.FORMUEDIT);</span>
+<span class="nc" id="L120">		modelAndView.addObject(&quot;locaciones&quot;,locacionService.getAll());</span>
+		
+<span class="nc" id="L122">		return modelAndView;</span>
+	}
+	
+	
+	
+	
+	//@PreAuthorize(&quot;hasRole('ROLE_1')&quot;)
+	@GetMapping(&quot;/editarLocacion/{id}&quot;)
+	public ModelAndView  editarLocacion(@PathVariable(&quot;id&quot;)int id,@ModelAttribute(&quot;locacion&quot;)LocacionModelo locacion) {	
+			
+<span class="nc" id="L132">		LocacionModelo locacionModelo = locacionService.traerPorId(id);</span>
+
+<span class="nc" id="L134">		ModelAndView mV = new ModelAndView();</span>
+		
+			
+			
+<span class="nc bnc" id="L138" title="All 2 branches missed.">			if(locacion.getFotos() == null) {</span>
+<span class="nc" id="L139">				locacion.setFotos(locacionModelo.getFotos()); //Para que no pierda la imagen si no la edito</span>
+			}
+			
+			
+<span class="nc" id="L143">			locacionService.insertOrUpdate(locacion); </span>
+			
+<span class="nc" id="L145">			mV.setViewName(ViewRouteHelper.EXPLO);</span>
+<span class="nc" id="L146">			mV.addObject(&quot;locacion&quot;, locacion);</span>
+			
+			
+<span class="nc" id="L149">			mV.addObject(&quot;locaciones&quot;,locacionService.getAll());</span>
+				
+
+		
+			
+<span class="nc" id="L154">		return mV;</span>
+	}
+
+	
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

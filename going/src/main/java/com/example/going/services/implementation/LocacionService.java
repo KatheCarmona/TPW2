@@ -1,3 +1,4 @@
+
 package com.example.going.services.implementation;
 
 import java.util.ArrayList;
@@ -45,6 +46,9 @@ public class LocacionService implements ILocacionService {
 		
 	};
 	
+	public Locacion traerEntidad(int id) {
+		return locacionConverter.modelToEntity(this.traerPorId(id));
+	}
 	
 	
 	
@@ -95,7 +99,7 @@ public class LocacionService implements ILocacionService {
 					lista = p.getComentarios();
 			}
 		}else {
-			System.out.println("la lista esta vacia");
+			System.out.println("la lista de comentarios esta vacia");
 		}
 		return lista;
 	}
@@ -108,7 +112,11 @@ public class LocacionService implements ILocacionService {
 		if (p!=null) {
 			if(p.getFotos()!=null) {
 					lista = p.getFotos();
+			}else {
+				System.out.println("p.getFotos() está vacio");
 			}
+		}else {
+			System.out.println("Objeto p (locacion) no trajo fotos");
 		}
 		return lista;
 	}

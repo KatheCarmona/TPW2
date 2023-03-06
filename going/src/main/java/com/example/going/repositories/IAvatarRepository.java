@@ -7,12 +7,16 @@ import org.springframework.stereotype.Repository;
 
 import com.example.going.entities.Avatar;
 
+
 @Repository("avatarRepository")
 public interface IAvatarRepository extends 
 						JpaRepository<Avatar, Serializable> {
 	
 	
 	public abstract Avatar findById(int id);
+	
+	
+	
 	
 	
 

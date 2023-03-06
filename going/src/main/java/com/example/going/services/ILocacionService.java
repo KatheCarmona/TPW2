@@ -26,7 +26,7 @@ public interface ILocacionService {
 	
 	public Set<Fotos> fotosDeLaLocacion(int id);
 	
-	
+	public Locacion traerEntidad(int id);
 
 
 }

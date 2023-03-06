@@ -23,29 +23,6 @@ public class PersonaConverter {
 	@Qualifier("usuarioConverter")
 	private UsuarioConverter usuarioConverter;
 	
-//	public PersonaModelo entityToModelSet(Persona persona) {
-//		
-//		
-//	
-//		return new PersonaModelo(persona.getId(), persona.getNombre(), persona.getEdad(), persona.getEmail(), 
-//				avatarConverter.entityToModel(persona.getAvatar()), locacionConverter.entidadAModeloSet(persona.getLocaciones()));
-//		
-//		
-//	}
-//	
-//	
-//	
-//	public Persona modelToEntitySet(PersonaModelo personaModelo) {
-//		
-//	
-//		return new Persona(personaModelo.getId(), personaModelo.getNombre(), personaModelo.getEdad(),
-//				personaModelo.getEmail(), avatarConverter.modelToEntity(personaModelo.getAvatar()), 
-//				locacionConverter.modeloAEntidadSet(personaModelo.getLocaciones()));
-//		
-//		
-//	}
-//	
-	
 	
 	
 	public PersonaModelo entityToModel(Persona persona) {

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fotos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.entities</a> &gt; <span class="el_source">Fotos.java</span></div><h1>Fotos.java</h1><pre class="source lang-java linenums">package com.example.going.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.mapping.Column;
+import org.hibernate.mapping.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
+@Table(name=&quot;fotos&quot;)
+public class Fotos {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	
+	private String imagen;
+	//private int locacion_id;
+	
+
+	@ManyToOne
+	@JoinColumn(name = &quot;locacion_id&quot;)
+	@JsonBackReference
+	private Locacion locacion;
+
+	public int getId() {
+<span class="fc" id="L35">		return id;</span>
+	}
+
+	public void setId(int id) {
+<span class="nc" id="L39">		this.id = id;</span>
+<span class="nc" id="L40">	}</span>
+
+	public String getImagen() {
+<span class="fc" id="L43">		return imagen;</span>
+	}
+
+	public void setImagen(String imagen) {
+<span class="nc" id="L47">		this.imagen = imagen;</span>
+<span class="nc" id="L48">	}</span>
+
+	public Locacion getLocacion() {
+<span class="nc" id="L51">		return locacion;</span>
+	}
+
+	public void setLocacion(Locacion locacion) {
+<span class="nc" id="L55">		this.locacion = locacion;</span>
+<span class="nc" id="L56">	}</span>
+	/*
+	
+	public int getLocacion_id() {
+		return locacion_id;
+	}
+
+	public void setLocacion_id(int locacion_id) {
+		this.locacion_id = locacion_id;
+	}
+*/
+
+	public Fotos() {
+<span class="fc" id="L69">		super();</span>
+<span class="fc" id="L70">	}</span>
+
+	public Fotos(int id, String imagen, Locacion locacion) {
+<span class="nc" id="L73">		super();</span>
+<span class="nc" id="L74">		this.id = id;</span>
+<span class="nc" id="L75">		this.imagen = imagen;</span>
+<span class="nc" id="L76">		this.locacion = locacion;</span>
+<span class="nc" id="L77">	}</span>
+	
+	
+	public Fotos(int id, String imagen, int locacion_id) {
+<span class="nc" id="L81">		super();</span>
+<span class="nc" id="L82">		this.id = id;</span>
+<span class="nc" id="L83">		this.imagen = imagen;</span>
+		
+<span class="nc" id="L85">	}</span>
+	
+	
+
+	public Fotos(int id, String imagen) {
+<span class="fc" id="L90">		super();</span>
+<span class="fc" id="L91">		this.id = id;</span>
+<span class="fc" id="L92">		this.imagen = imagen;</span>
+<span class="fc" id="L93">	}</span>
+
+	@Override
+	public String toString() {
+<span class="nc" id="L97">		return &quot;Fotos [id=&quot; + id + &quot;, imagen=&quot; + imagen + &quot;, locacion=&quot; + locacion + &quot;]&quot;;</span>
+	}
+	
+	
+	
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -43,12 +43,12 @@ public class HomeControlador {
 		return ViewRouteHelper.HOME;
 	}
 	
-//	@GetMapping("/loginok")
-//	public String loginAdmin() {
-//		
-//		return ViewRouteHelper.ADMINPAGE;
+	@GetMapping("/loginok")
+	public String loginOk() {
+	
+		return ViewRouteHelper.PERFIL;
 //		//return "redirect:/admin/admin";
-//	}
+	}
 	
     @RequestMapping(value="/logout", method=RequestMethod.GET)  
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
@@ -63,7 +63,7 @@ public class HomeControlador {
 	public String loginCheck() {
 
     System.out.println("holaaaaaaaa");
-    	return  ViewRouteHelper.ADMINPAGE;
+    	return  ViewRouteHelper.PERFIL;
     
 	}
 	

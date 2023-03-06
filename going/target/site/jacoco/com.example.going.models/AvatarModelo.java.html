@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AvatarModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.models</a> &gt; <span class="el_source">AvatarModelo.java</span></div><h1>AvatarModelo.java</h1><pre class="source lang-java linenums">package com.example.going.models;
+
+
+public class AvatarModelo {
+	
+	
+	private int id;
+	
+
+	private String imagen;
+	
+	private PersonaModelo persona;
+	
+	
+	public int getId() {
+<span class="fc" id="L16">		return id;</span>
+	}
+	public void setId(int id) {
+<span class="nc" id="L19">		this.id = id;</span>
+<span class="nc" id="L20">	}</span>
+
+	public AvatarModelo(int id) {
+<span class="nc" id="L23">		super();</span>
+<span class="nc" id="L24">		this.id = id;</span>
+<span class="nc" id="L25">	}</span>
+
+	
+	public AvatarModelo() {
+<span class="fc" id="L29">		super();</span>
+		
+<span class="fc" id="L31">	}</span>
+	public PersonaModelo getPersona() {
+<span class="nc" id="L33">		return persona;</span>
+	}
+	public void setPersona(PersonaModelo persona) {
+<span class="nc" id="L36">		this.persona = persona;</span>
+<span class="nc" id="L37">	}</span>
+	public AvatarModelo(int id, PersonaModelo persona) {
+<span class="nc" id="L39">		super();</span>
+<span class="nc" id="L40">		this.id = id;</span>
+<span class="nc" id="L41">		this.persona = persona;</span>
+<span class="nc" id="L42">	}</span>
+	public String getImagen() {
+<span class="fc" id="L44">		return imagen;</span>
+	}
+	public void setImagen(String imagen) {
+<span class="nc" id="L47">		this.imagen = imagen;</span>
+<span class="nc" id="L48">	}</span>
+	public AvatarModelo(int id, String imagen, PersonaModelo persona) {
+<span class="nc" id="L50">		super();</span>
+<span class="nc" id="L51">		this.id = id;</span>
+
+<span class="nc" id="L53">		this.imagen = imagen;</span>
+<span class="nc" id="L54">		this.persona = persona;</span>
+<span class="nc" id="L55">	}</span>
+	public AvatarModelo(int id, String imagen) {
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">		this.id = id;</span>
+
+<span class="fc" id="L60">		this.imagen = imagen;</span>
+	
+<span class="fc" id="L62">	}</span>
+	
+	@Override
+	public String toString() {
+<span class="nc" id="L66">		return &quot;AvatarModelo [id=&quot; + id + &quot;, imagen=&quot; + imagen</span>
+				+ &quot;, persona=&quot; + persona + &quot;]&quot;;
+	}
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

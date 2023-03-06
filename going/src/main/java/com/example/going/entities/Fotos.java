@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.mapping.Column;
+import org.hibernate.mapping.Set;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -20,7 +23,9 @@ public class Fotos {
 	
 	
 	private String imagen;
+	//private int locacion_id;
 	
+
 	@ManyToOne
 	@JoinColumn(name = "locacion_id")
 	@JsonBackReference
@@ -49,6 +54,16 @@ public class Fotos {
 	public void setLocacion(Locacion locacion) {
 		this.locacion = locacion;
 	}
+	/*
+	
+	public int getLocacion_id() {
+		return locacion_id;
+	}
+
+	public void setLocacion_id(int locacion_id) {
+		this.locacion_id = locacion_id;
+	}
+*/
 
 	public Fotos() {
 		super();
@@ -59,6 +74,22 @@ public class Fotos {
 		this.id = id;
 		this.imagen = imagen;
 		this.locacion = locacion;
+	}
+	
+	
+	public Fotos(int id, String imagen, int locacion_id) {
+		super();
+		this.id = id;
+		this.imagen = imagen;
+		
+	}
+	
+	
+
+	public Fotos(int id, String imagen) {
+		super();
+		this.id = id;
+		this.imagen = imagen;
 	}
 
 	@Override

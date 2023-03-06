@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SecurityConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.configuration</a> &gt; <span class="el_source">SecurityConfiguration.java</span></div><h1>SecurityConfiguration.java</h1><pre class="source lang-java linenums">package com.example.going.configuration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.example.going.services.implementation.UserService;
+
+@SuppressWarnings(&quot;deprecation&quot;)
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
+<span class="fc" id="L19">public class SecurityConfiguration extends WebSecurityConfigurerAdapter {</span>
+
+	
+	@Autowired
+	@Qualifier(&quot;userService&quot;)
+	private UserService userService;
+	
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+<span class="fc" id="L28">		auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());</span>
+<span class="fc" id="L29">	}</span>
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+<span class="fc" id="L33">		http.csrf().disable()</span>
+<span class="fc" id="L34">		.authorizeRequests()</span>
+<span class="fc" id="L35">				.antMatchers(&quot;/css/*&quot;, &quot;/assests/*&quot;, &quot;/js/*&quot;, &quot;/images/&quot;,&quot;/comentario&quot;,&quot;/index&quot;,&quot;/perfil&quot;,&quot;/explorar&quot;).permitAll()</span>
+<span class="fc" id="L36">				.anyRequest().authenticated()</span>
+<span class="fc" id="L37">			.and()</span>
+<span class="fc" id="L38">				.formLogin().loginPage(&quot;/home&quot;).loginProcessingUrl(&quot;/loginprocess&quot;)</span>
+<span class="fc" id="L39">				.usernameParameter(&quot;username&quot;).passwordParameter(&quot;password&quot;)</span>
+<span class="fc" id="L40">				.defaultSuccessUrl(&quot;/perfil&quot;).permitAll()</span>
+				//.defaultSuccessUrl(&quot;/explorar&quot;).permitAll()
+				//.successForwardUrl(&quot;/explorar&quot;).permitAll()
+				
+				
+<span class="fc" id="L45">			.and()</span>
+<span class="fc" id="L46">				.logout().logoutUrl(&quot;/logout&quot;).logoutSuccessUrl(&quot;/logout&quot;).permitAll();</span>
+<span class="fc" id="L47">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

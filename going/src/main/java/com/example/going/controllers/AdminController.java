@@ -53,7 +53,7 @@ public class AdminController {
 		
 		model.addAttribute("persona", new PersonaModelo());
 		model.addAttribute("usuario", new UsuarioModelo());
-		model.addAttribute("user_role", new UsuarioRolModelo());//para crear personas
+		model.addAttribute("userrole", new UsuarioRolModelo());//para crear personas
 	
 		ModelAndView mV = new ModelAndView();
 		

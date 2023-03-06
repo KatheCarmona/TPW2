@@ -4,6 +4,8 @@ package com.example.going.converters;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.example.going.entities.Locacion;
@@ -13,7 +15,9 @@ import com.example.going.models.LocacionModelo;
 @Component("locacionConverter")
 public class LocacionConverter {
 	
-	
+	@Autowired
+	@Qualifier("fotosConverter")
+	private FotosConverter fotoConverter;
 	
 	public LocacionModelo entityToModel(Locacion locacion) {
 		
@@ -24,39 +28,6 @@ public class LocacionConverter {
 		
 		
 	}
-	
-	
-	public Set<LocacionModelo> entidadAModeloSet(Set<Locacion> lugar){
-		
-		Set<LocacionModelo>  lista = new HashSet<>();
-		
-		for(Locacion p: lugar) {
-			
-			lista.add(entityToModel(p));
-			
-			
-		}
-		
-		
-		return lista;
-	}
-	
-	
-	public Set<Locacion> modeloAEntidadSet(Set<LocacionModelo> lugar){
-		
-		Set<Locacion>  lista = new HashSet<>();
-		
-		for(LocacionModelo p: lugar) {
-			
-			lista.add(modelToEntity(p));
-			
-			
-		}
-		
-		
-		return lista;
-	}
-	
 	
 	
 	

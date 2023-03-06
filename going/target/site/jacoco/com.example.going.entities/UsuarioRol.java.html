@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioRol.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.entities</a> &gt; <span class="el_source">UsuarioRol.java</span></div><h1>UsuarioRol.java</h1><pre class="source lang-java linenums">package com.example.going.entities;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+
+@Entity
+@Table(name=&quot;user_role&quot;, uniqueConstraints=@UniqueConstraint(columnNames= {&quot;rol&quot;, &quot;user_id&quot;}))
+public class UsuarioRol {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name=&quot;user_id&quot;, nullable=false)
+	private Usuario usuario;
+	
+	@Column(name=&quot;rol&quot;, nullable=false, length=100)
+	private String rol;
+
+	@Column(name=&quot;createdat&quot;)
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	
+	@Column(name=&quot;updatedat&quot;)
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+
+<span class="nc" id="L43">	public UsuarioRol(int id, Usuario usuario, String rol) {</span>
+<span class="nc" id="L44">		this.id = id;</span>
+<span class="nc" id="L45">		this.usuario = usuario;</span>
+<span class="nc" id="L46">		this.rol = rol;</span>
+<span class="nc" id="L47">	}</span>
+
+	public int getId() {
+<span class="fc" id="L50">		return id;</span>
+	}
+
+	public void setId(int id) {
+<span class="nc" id="L54">		this.id = id;</span>
+<span class="nc" id="L55">	}</span>
+
+	public Usuario getUser() {
+<span class="nc" id="L58">		return usuario;</span>
+	}
+
+	public void setUser(Usuario usuario) {
+<span class="nc" id="L62">		this.usuario = usuario;</span>
+<span class="nc" id="L63">	}</span>
+
+	public String getRol() {
+<span class="nc" id="L66">		return rol;</span>
+	}
+
+	public void setRol(String rol) {
+<span class="nc" id="L70">		this.rol = rol;</span>
+<span class="nc" id="L71">	}</span>
+
+	public LocalDateTime getCreatedAt() {
+<span class="nc" id="L74">		return createdAt;</span>
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+<span class="nc" id="L78">		this.createdAt = createdAt;</span>
+<span class="nc" id="L79">	}</span>
+
+	public LocalDateTime getUpdatedAt() {
+<span class="nc" id="L82">		return updatedAt;</span>
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+<span class="nc" id="L86">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L87">	}</span>
+
+	public UsuarioRol(int id, Usuario usuario, String rol, LocalDateTime createdAt, LocalDateTime updatedAt) {
+<span class="nc" id="L90">		super();</span>
+<span class="nc" id="L91">		this.id = id;</span>
+<span class="nc" id="L92">		this.usuario = usuario;</span>
+<span class="nc" id="L93">		this.rol = rol;</span>
+<span class="nc" id="L94">		this.createdAt = createdAt;</span>
+<span class="nc" id="L95">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L96">	}</span>
+
+	public UsuarioRol() {
+<span class="fc" id="L99">		super();</span>
+<span class="fc" id="L100">	}</span>
+
+	@Override
+	public String toString() {
+<span class="nc" id="L104">		return rol;</span>
+	}
+
+	public UsuarioRol(int id, String rol) {
+<span class="nc" id="L108">		super();</span>
+<span class="nc" id="L109">		this.id = id;</span>
+<span class="nc" id="L110">		this.rol = rol;</span>
+<span class="nc" id="L111">	}</span>
+
+	
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

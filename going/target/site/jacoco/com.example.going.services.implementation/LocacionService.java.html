@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocacionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.services.implementation</a> &gt; <span class="el_source">LocacionService.java</span></div><h1>LocacionService.java</h1><pre class="source lang-java linenums">
+package com.example.going.services.implementation;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.example.going.converters.LocacionConverter;
+import com.example.going.entities.Comentarios;
+import com.example.going.entities.Fotos;
+import com.example.going.entities.Locacion;
+import com.example.going.models.LocacionModelo;
+import com.example.going.repositories.ILocacionRepository;
+import com.example.going.services.ILocacionService;
+
+
+@Service(&quot;locacionService&quot;)
+<span class="fc" id="L24">public class LocacionService implements ILocacionService {</span>
+	
+	@Autowired
+	@Qualifier(&quot;locacionRepository&quot;)
+	private ILocacionRepository locacionRepository;
+	
+	@Autowired
+	@Qualifier(&quot;locacionConverter&quot;)
+	private LocacionConverter locacionConverter;
+	
+	@Override
+	public List&lt;Locacion&gt; getAll(){	
+			
+			
+<span class="nc" id="L38">		return locacionRepository.findAll();	</span>
+	}
+	
+	
+	public LocacionModelo traerPorId(int id) {
+		
+		
+<span class="nc" id="L45">		return locacionConverter.entityToModel(locacionRepository.findById(id));</span>
+		
+	};
+	
+	public Locacion traerEntidad(int id) {
+<span class="nc" id="L50">		return locacionConverter.modelToEntity(this.traerPorId(id));</span>
+	}
+	
+	
+	
+	public List&lt;LocacionModelo&gt; getAllModel(){
+		
+<span class="nc" id="L57">		List&lt;LocacionModelo&gt; locacionesList = new ArrayList&lt;LocacionModelo&gt;();</span>
+		
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		for (Locacion iter:getAll() ) {</span>
+			
+<span class="nc" id="L61">			locacionesList.add(locacionConverter.entityToModel(iter));</span>
+			
+			
+		}
+	
+		
+<span class="nc" id="L67">		return locacionesList;</span>
+	}
+	
+	@Override
+	public LocacionModelo insertOrUpdate(LocacionModelo locacionModelo) {
+		
+	
+		
+<span class="nc" id="L75">		Locacion locacion = locacionRepository.save(locacionConverter.modelToEntity(locacionModelo));</span>
+		
+<span class="nc" id="L77">		return locacionConverter.entityToModel(locacion);</span>
+	}
+	
+	@Override
+	public boolean remove(int id) {
+		
+		try {
+<span class="nc" id="L84">			locacionRepository.deleteById(id);</span>
+<span class="nc" id="L85">			return true;</span>
+<span class="nc" id="L86">		}catch (Exception e) {</span>
+<span class="nc" id="L87">			return false;</span>
+		}
+		
+	}
+	
+	public Set&lt;Comentarios&gt; comentariosDeLaLocacion(int id) {
+		
+<span class="nc" id="L94">		Locacion p = locacionRepository.findByIdAndFetchcomentariosEagerly(id);</span>
+		
+<span class="nc" id="L96">		Set&lt;Comentarios&gt; lista = new HashSet&lt;&gt;();</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">		if (p!=null) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">			if(p.getComentarios()!=null) {</span>
+<span class="nc" id="L99">					lista = p.getComentarios();</span>
+			}
+<span class="nc" id="L101">		}else {</span>
+<span class="nc" id="L102">			System.out.println(&quot;la lista de comentarios esta vacia&quot;);</span>
+		}
+<span class="nc" id="L104">		return lista;</span>
+	}
+	
+	public Set&lt;Fotos&gt; fotosDeLaLocacion(int id) {
+		
+<span class="nc" id="L109">		Locacion p = locacionRepository.findByIdAndFetchFotosEagerly(id);</span>
+		
+<span class="nc" id="L111">		Set&lt;Fotos&gt; lista = new HashSet&lt;&gt;();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">		if (p!=null) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">			if(p.getFotos()!=null) {</span>
+<span class="nc" id="L114">					lista = p.getFotos();</span>
+<span class="nc" id="L115">			}else {</span>
+<span class="nc" id="L116">				System.out.println(&quot;p.getFotos() está vacio&quot;);</span>
+			}
+<span class="nc" id="L118">		}else {</span>
+<span class="nc" id="L119">			System.out.println(&quot;Objeto p (locacion) no trajo fotos&quot;);</span>
+		}
+<span class="nc" id="L121">		return lista;</span>
+	}
+	
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

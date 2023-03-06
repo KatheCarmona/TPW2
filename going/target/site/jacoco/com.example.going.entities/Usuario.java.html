@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Usuario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.entities</a> &gt; <span class="el_source">Usuario.java</span></div><h1>Usuario.java</h1><pre class="source lang-java linenums">package com.example.going.entities;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+@Entity
+@Table(name=&quot;usuario&quot;)
+public class Usuario {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name=&quot;username&quot;, unique=true, nullable=false, length=45)
+	private String username;
+	
+	@Column(name=&quot;pass&quot;, nullable=false, length=60)
+	private String password;
+	
+	@Column(name=&quot;enabled&quot;)
+	private boolean enabled;
+	
+	@Column(name=&quot;createdat&quot;)
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	
+	@Column(name=&quot;updatedat&quot;)
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+	
+	@OneToOne(mappedBy = &quot;usuario&quot;)
+	@JsonIgnore
+	private Persona persona;
+	
+	
+<span class="pc" id="L55">	@OneToMany(cascade = CascadeType.ALL, mappedBy=&quot;usuario&quot;)</span>
+	@JsonIgnore
+	private Set&lt;UsuarioRol&gt; usuarioRols = new HashSet&lt;UsuarioRol&gt;();
+	
+<span class="nc" id="L59">	public Usuario(String username, String password, boolean enabled) {</span>
+<span class="nc" id="L60">		this.username = username;</span>
+<span class="nc" id="L61">		this.password = password;</span>
+<span class="nc" id="L62">		this.enabled = enabled;</span>
+<span class="nc" id="L63">	}</span>
+	
+<span class="nc" id="L65">	public Usuario(String username, String password, boolean enabled, Set&lt;UsuarioRol&gt; usuarioRols) {</span>
+<span class="nc" id="L66">		this.username = username;</span>
+<span class="nc" id="L67">		this.password = password;</span>
+<span class="nc" id="L68">		this.enabled = enabled;</span>
+<span class="nc" id="L69">		this.usuarioRols = usuarioRols;</span>
+<span class="nc" id="L70">	}</span>
+
+	public int getId() {
+<span class="fc" id="L73">		return id;</span>
+	}
+
+	public void setId(int id) {
+<span class="nc" id="L77">		this.id = id;</span>
+<span class="nc" id="L78">	}</span>
+
+	public String getUsername() {
+<span class="fc" id="L81">		return username;</span>
+	}
+
+	public void setUsername(String username) {
+<span class="nc" id="L85">		this.username = username;</span>
+<span class="nc" id="L86">	}</span>
+
+	public String getPassword() {
+<span class="nc" id="L89">		return password;</span>
+	}
+
+	public void setPassword(String password) {
+<span class="nc" id="L93">		this.password = password;</span>
+<span class="nc" id="L94">	}</span>
+
+	public boolean isEnabled() {
+<span class="nc" id="L97">		return enabled;</span>
+	}
+
+	public void setEnabled(boolean enabled) {
+<span class="nc" id="L101">		this.enabled = enabled;</span>
+<span class="nc" id="L102">	}</span>
+
+	public LocalDateTime getCreatedAt() {
+<span class="nc" id="L105">		return createdAt;</span>
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+<span class="nc" id="L109">		this.createdAt = createdAt;</span>
+<span class="nc" id="L110">	}</span>
+
+	public LocalDateTime getUpdatedAt() {
+<span class="nc" id="L113">		return updatedAt;</span>
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+<span class="nc" id="L117">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L118">	}</span>
+
+	public Set&lt;UsuarioRol&gt; getUserRoles() {
+<span class="nc" id="L121">		return usuarioRols;</span>
+	}
+
+	public void setUserRoles(Set&lt;UsuarioRol&gt; usuarioRols) {
+<span class="nc" id="L125">		this.usuarioRols = usuarioRols;</span>
+<span class="nc" id="L126">	}</span>
+	
+	public Persona getPersona() {
+<span class="nc" id="L129">		return persona;</span>
+	}
+
+	public void setPersona(Persona persona) {
+<span class="nc" id="L133">		this.persona = persona;</span>
+<span class="nc" id="L134">	}</span>
+
+
+	public Usuario(int id, String username, String password, boolean enabled, LocalDateTime createdAt,
+			LocalDateTime updatedAt, Set&lt;UsuarioRol&gt; usuarioRols) {
+<span class="nc" id="L139">		super();</span>
+<span class="nc" id="L140">		this.id = id;</span>
+<span class="nc" id="L141">		this.username = username;</span>
+<span class="nc" id="L142">		this.password = password;</span>
+<span class="nc" id="L143">		this.enabled = enabled;</span>
+<span class="nc" id="L144">		this.createdAt = createdAt;</span>
+<span class="nc" id="L145">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L146">		this.usuarioRols = usuarioRols;</span>
+<span class="nc" id="L147">	}</span>
+
+	public Usuario(int id, String username, String password) {
+<span class="nc" id="L150">		super();</span>
+<span class="nc" id="L151">		this.id = id;</span>
+<span class="nc" id="L152">		this.username = username;</span>
+<span class="nc" id="L153">		this.password = password;</span>
+<span class="nc" id="L154">	}</span>
+
+
+
+	public Usuario(int id, String username, String password, boolean enabled, LocalDateTime createdAt,
+			LocalDateTime updatedAt, Persona persona, Set&lt;UsuarioRol&gt; usuarioRols) {
+<span class="nc" id="L160">		super();</span>
+<span class="nc" id="L161">		this.id = id;</span>
+<span class="nc" id="L162">		this.username = username;</span>
+<span class="nc" id="L163">		this.password = password;</span>
+<span class="nc" id="L164">		this.enabled = enabled;</span>
+<span class="nc" id="L165">		this.createdAt = createdAt;</span>
+<span class="nc" id="L166">		this.updatedAt = updatedAt;</span>
+<span class="nc" id="L167">		this.persona = persona;</span>
+<span class="nc" id="L168">		this.usuarioRols = usuarioRols;</span>
+<span class="nc" id="L169">	}</span>
+
+	public Usuario() {
+<span class="fc" id="L172">		super();</span>
+<span class="fc" id="L173">	}</span>
+
+	@Override
+	public String toString() {
+<span class="nc" id="L177">		return &quot;Usuario [id=&quot; + id + &quot;, username=&quot; + username + &quot;, password=&quot; + password + &quot;, enabled=&quot; + enabled</span>
+				+ &quot;, createdAt=&quot; + createdAt + &quot;, updatedAt=&quot; + updatedAt + &quot;]&quot;;
+	}
+	
+	public String getRol(){//Para la vista
+		String rol;
+<span class="nc" id="L183">		rol=this.usuarioRols.toString();</span>
+<span class="nc" id="L184">		return rol;</span>
+	}
+
+	public Usuario(int id, String username, String password, boolean enabled, Set&lt;UsuarioRol&gt; usuarioRols) {
+<span class="fc" id="L188">		super();</span>
+<span class="fc" id="L189">		this.id = id;</span>
+<span class="fc" id="L190">		this.username = username;</span>
+<span class="fc" id="L191">		this.password = password;</span>
+<span class="fc" id="L192">		this.enabled = enabled;</span>
+<span class="fc" id="L193">		this.usuarioRols = usuarioRols;</span>
+<span class="fc" id="L194">	}</span>
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

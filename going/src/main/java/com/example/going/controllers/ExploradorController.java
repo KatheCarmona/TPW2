@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,7 +37,7 @@ public class ExploradorController {
 	private ILocacionService locacionService;
 	
 	
-	@PreAuthorize("hasRole('ROLE_2')")
+
 	@GetMapping("")
 	public ModelAndView  explorador() {
 		 User usuario = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -57,29 +58,105 @@ public class ExploradorController {
 	@GetMapping("/detalleLocacion/{id}")
 	public ModelAndView  detalles(@PathVariable("id")int id, Model model) {	
 		
-		
-		
-		//PersonaModelo persona = personaService.traerPorId(id);
+
 		LocacionModelo locacion = locacionService.traerPorId(id);
 		
 		
 		Set<Fotos> fotos = locacionService.fotosDeLaLocacion(id);
 		Set<Comentarios> comentarios = locacionService.comentariosDeLaLocacion(id);
 		
-		//Usuario usuario = personaService.traerUsuario(id);
+
 		
 		
 
 		model.addAttribute("lugar", locacion);
 		model.addAttribute("fotos",fotos);
 		model.addAttribute("comentarios",comentarios);
-
-		
-		
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.DETALLELOC);
-		modelAndView.addObject("lugares",locacionService.getAll());
+		modelAndView.addObject("locaciones",locacionService.getAll());
 		
 		return modelAndView;	
 	}
+	
+	
+	
+	//@PreAuthorize("hasRole('ROLE_1')")
+	@GetMapping("/eliminarLocacion/{id}")
+	public ModelAndView  eliminarLocacion(@PathVariable("id")int id, Model model) {	
+		
+	
+		locacionService.remove(id);
+		
+		ModelAndView mV = new ModelAndView();
+		
+		mV.setViewName(ViewRouteHelper.ELIMINARlOC);
+		mV.addObject("locaciones",locacionService.getAll());
+		
+	
+		
+		
+		return mV;	
+	}
+	
+	/*
+	
+	@GetMapping("/editarLoc/{id}")
+	public ModelAndView editarLoc(@PathVariable("id")int id, Model model) {	
+		
+		
+		
+		LocacionModelo locacion = locacionService.traerPorId(id);
+		
+		
+		Set<Fotos> fotos = locacionService.fotosDeLaLocacion(id);
+		
+
+		model.addAttribute("locacion", locacion);
+		model.addAttribute("fotos",fotos);
+
+		
+		
+		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.FORMUEDIT);
+		modelAndView.addObject("locaciones",locacionService.getAll());
+		
+		return modelAndView;
+	}
+	
+	
+	
+	
+	//@PreAuthorize("hasRole('ROLE_1')")
+	@GetMapping("/editarLocacion/{id}")
+	public ModelAndView  editarLocacion(@PathVariable("id")int id,@ModelAttribute("locacion")LocacionModelo locacion) {	
+			
+		LocacionModelo locacionModelo = locacionService.traerPorId(id);
+
+		ModelAndView mV = new ModelAndView();
+		
+			
+			
+			if(locacion.getFotos() == null) {
+				locacion.setFotos(locacionModelo.getFotos()); //Para que no pierda la imagen si no la edito
+			}
+			
+			
+			locacionService.insertOrUpdate(locacion); 
+			
+			mV.setViewName(ViewRouteHelper.EXPLO);
+			mV.addObject("locacion", locacion);
+			
+			
+			mV.addObject("locaciones",locacionService.getAll());
+				
+
+		
+			
+		return mV;
+	}
+
+	
+	*/
+	
+	
 	
 }

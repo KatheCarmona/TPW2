@@ -106,6 +106,15 @@ public class Locacion {
 		super();
 	
 	}
+	
+
+	public Locacion(int id, String nombre, String direccion, String descripcion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.descripcion = descripcion;
+	}
 
 	public Locacion(int id, String nombre, int valoracion, Set<Persona> persona) {
 		super();
@@ -162,6 +171,9 @@ public class Locacion {
 	}
 
 	public void setFotos(Set<Fotos> fotos) {
+		for(Fotos item: fotos) {
+			item.setLocacion(this);
+		}
 		this.fotos = fotos;
 	}
 

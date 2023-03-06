@@ -8,6 +8,8 @@ import com.example.going.models.AvatarModelo;
 @Component("avatarConverter")
 public class AvatarConverter {
 	
+	
+	
 	public AvatarModelo entityToModel(Avatar avatar) {
 		
 		return new AvatarModelo(avatar.getId(),avatar.getImagen());

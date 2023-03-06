@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FotosModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.models</a> &gt; <span class="el_source">FotosModelo.java</span></div><h1>FotosModelo.java</h1><pre class="source lang-java linenums">package com.example.going.models;
+
+import com.example.going.entities.Locacion;
+
+public class FotosModelo {
+	
+	private int id;
+	
+	private String imagen;
+	private LocacionModelo locacion;
+	
+	private int locacion_id;
+	
+	public int getId() {
+<span class="fc" id="L15">		return id;</span>
+	}
+	public void setId(int id) {
+<span class="nc" id="L18">		this.id = id;</span>
+<span class="nc" id="L19">	}</span>
+	public String getImagen() {
+<span class="fc" id="L21">		return imagen;</span>
+	}
+	public void setImagen(String imagen) {
+<span class="nc" id="L24">		this.imagen = imagen;</span>
+<span class="nc" id="L25">	}</span>
+	public LocacionModelo getLocacion() {
+<span class="nc" id="L27">		return locacion;</span>
+	}
+	public void setLocacion(LocacionModelo locacion) {
+<span class="nc" id="L30">		this.locacion = locacion;</span>
+<span class="nc" id="L31">	}</span>
+	
+	
+	public int getLocacion_id() {
+<span class="nc" id="L35">		return locacion_id;</span>
+	}
+	public void setLocacion_id(int locacion_id) {
+<span class="nc" id="L38">		this.locacion_id = locacion_id;</span>
+<span class="nc" id="L39">	}</span>
+	public FotosModelo() {
+<span class="nc" id="L41">		super();</span>
+		// TODO Auto-generated constructor stub
+<span class="nc" id="L43">	}</span>
+	public FotosModelo(int id, String imagen, LocacionModelo locacion) {
+<span class="nc" id="L45">		super();</span>
+<span class="nc" id="L46">		this.id = id;</span>
+<span class="nc" id="L47">		this.imagen = imagen;</span>
+<span class="nc" id="L48">		this.locacion = locacion;</span>
+<span class="nc" id="L49">	}</span>
+	
+	public FotosModelo(int id, String imagen, int locacion_id) {
+<span class="nc" id="L52">		super();</span>
+<span class="nc" id="L53">		this.id = id;</span>
+<span class="nc" id="L54">		this.imagen = imagen;</span>
+<span class="nc" id="L55">		this.locacion_id = locacion_id;</span>
+<span class="nc" id="L56">	}</span>
+	public FotosModelo(int id, String imagen) {
+<span class="fc" id="L58">		super();</span>
+<span class="fc" id="L59">		this.id = id;</span>
+<span class="fc" id="L60">		this.imagen = imagen;</span>
+<span class="fc" id="L61">	}</span>
+
+	
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

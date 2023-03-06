@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersonaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.services.implementation</a> &gt; <span class="el_source">PersonaService.java</span></div><h1>PersonaService.java</h1><pre class="source lang-java linenums">package com.example.going.services.implementation;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.example.going.converters.PersonaConverter;
+import com.example.going.entities.Avatar;
+import com.example.going.entities.Locacion;
+import com.example.going.entities.Persona;
+import com.example.going.entities.Usuario;
+import com.example.going.models.PersonaModelo;
+import com.example.going.repositories.IAvatarRepository;
+import com.example.going.repositories.IPersonaRepository;
+import com.example.going.repositories.IUserRepository;
+import com.example.going.services.IPersonaService;
+
+
+@Service(&quot;personaService&quot;)
+<span class="fc" id="L25">public class PersonaService implements IPersonaService {</span>
+	
+	@Autowired
+	@Qualifier(&quot;personaRepository&quot;)
+	private IPersonaRepository personaRepository;
+	
+	@Autowired
+	@Qualifier(&quot;personaConverter&quot;)
+	private PersonaConverter personaConverter;
+	
+	@Autowired
+	@Qualifier(&quot;userRepository&quot;)
+	private IUserRepository usuarioRepository;
+	
+	
+	@Autowired
+	@Qualifier(&quot;avatarRepository&quot;)
+	private IAvatarRepository avatarRepository;
+	
+	@Override
+	public List&lt;Persona&gt; getAll(){	
+			
+			
+<span class="nc" id="L48">		return personaRepository.findAll();	</span>
+	}
+	
+	
+	public PersonaModelo traerPorId(int id) {
+		
+		
+<span class="nc" id="L55">		return personaConverter.entityToModel(personaRepository.findById(id));</span>
+		
+	};
+	
+	public Usuario traerUsuario(int id) {
+		
+<span class="nc" id="L61">		Persona p = personaRepository.findByIdAndFetchUsuarioEagerly(id);</span>
+<span class="nc" id="L62">		Usuario usuario = new Usuario();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if (p!=null) {</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">			if(p.getUsuario()!=null) {</span>
+<span class="nc" id="L65">				usuario = p.getUsuario();</span>
+			}
+		}
+		
+<span class="nc" id="L69">		return usuario;</span>
+		
+	};
+	
+	
+	public PersonaModelo traerPersonaCompletaPorId(int id) {
+		
+<span class="nc" id="L76">		List&lt;Persona&gt; listaEntidad = getPersonasCompletas();</span>
+<span class="nc" id="L77">		PersonaModelo personaEncontrada = new PersonaModelo();</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">		for (Persona p: listaEntidad) {</span>
+			
+<span class="nc bnc" id="L80" title="All 2 branches missed.">			if(p.getId() == id) {</span>
+				
+<span class="nc" id="L82">				personaEncontrada = personaConverter.entityToModel(p);</span>
+				
+			}
+			
+			
+<span class="nc" id="L87">		}</span>
+<span class="nc" id="L88">		return personaEncontrada;</span>
+	}
+	
+	
+	public List&lt;Persona&gt; getPersonasCompletas(){
+		
+<span class="nc" id="L94">		List&lt;Persona&gt; personas = getAll();</span>
+		
+<span class="nc bnc" id="L96" title="All 2 branches missed.">		for (Persona p: personas) {</span>
+			
+<span class="nc" id="L98">			Avatar avatar = avatarRepository.findById(p.getAvatar().getId());</span>
+<span class="nc" id="L99">			Usuario usuario = usuarioRepository.findById(p.getUsuario().getId());</span>
+			
+<span class="nc" id="L101">			Set&lt;Locacion&gt; locaciones = locacionesCargadas(p.getId());</span>
+			
+<span class="nc bnc" id="L103" title="All 2 branches missed.">			if(avatar != null) {</span>
+<span class="nc" id="L104">				p.setAvatar(avatar);</span>
+			}
+			
+			
+<span class="nc bnc" id="L108" title="All 2 branches missed.">			if(locaciones!=null) {</span>
+<span class="nc" id="L109">			p.setLocaciones(locaciones);</span>
+			}
+			
+<span class="nc bnc" id="L112" title="All 2 branches missed.">			if(usuario!=null) {</span>
+<span class="nc" id="L113">			p.setUsuario(usuario);</span>
+			}
+
+<span class="nc" id="L116">		}</span>
+		
+<span class="nc" id="L118">		return personas;</span>
+	}
+	
+	public List&lt;PersonaModelo&gt; getAllModel(){
+		
+<span class="nc" id="L123">		List&lt;PersonaModelo&gt; listaDePersonas = new ArrayList&lt;PersonaModelo&gt;();</span>
+		
+<span class="nc bnc" id="L125" title="All 2 branches missed.">		for (Persona p:getAll() ) {</span>
+			
+<span class="nc" id="L127">			listaDePersonas.add(personaConverter.entityToModel(p));</span>
+			
+			
+<span class="nc" id="L130">		}</span>
+	
+		
+<span class="nc" id="L133">		return listaDePersonas;</span>
+	}
+	
+	@Override
+	public PersonaModelo insertOrUpdate(PersonaModelo personaModelo) {
+		
+	
+		
+<span class="nc" id="L141">		Persona persona = personaRepository.save(personaConverter.modelToEntity(personaModelo));</span>
+		
+<span class="nc" id="L143">		return personaConverter.entityToModel(persona);</span>
+	}
+	
+	
+//	@Override
+//	public PersonaModelo insertOrUpdateSet(PersonaModelo personaModelo) {
+//		
+//	
+//		
+//		Persona persona = personaRepository.save(personaConverter.modelToEntitySet(personaModelo));
+//		
+//		return personaConverter.entityToModelSet(persona);
+//	}
+	
+	
+	public Set&lt;Locacion&gt; locacionesCargadas(int id) {
+		
+<span class="nc" id="L160">		Persona p = personaRepository.findByIdAndFetchLocacionesEagerly(id);</span>
+		//System.out.println(p);
+<span class="nc" id="L162">		Set&lt;Locacion&gt; lista = new HashSet&lt;&gt;();</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">		if (p!=null) {</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">			if(p.getLocaciones()!=null) {</span>
+<span class="nc" id="L165">				lista = p.getLocaciones();</span>
+			}
+		}
+<span class="nc" id="L168">		return lista;</span>
+	}
+	
+
+	
+	
+	
+	
+	@Override
+	public boolean remove(int id) {
+		
+		try {
+<span class="nc" id="L180">			personaRepository.deleteById(id);</span>
+<span class="nc" id="L181">			return true;</span>
+<span class="nc" id="L182">		}catch (Exception e) {</span>
+<span class="nc" id="L183">			return false;</span>
+		}
+		
+	}
+
+	
+	@Override
+	public boolean remove(Long id) {
+		
+		try {
+<span class="nc" id="L193">			personaRepository.deleteById(id);</span>
+<span class="nc" id="L194">			return true;</span>
+<span class="nc" id="L195">		}catch (Exception e) {</span>
+<span class="nc" id="L196">			return false;</span>
+		}
+		
+	}
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

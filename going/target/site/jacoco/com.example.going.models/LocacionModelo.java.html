@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocacionModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">going</a> &gt; <a href="index.source.html" class="el_package">com.example.going.models</a> &gt; <span class="el_source">LocacionModelo.java</span></div><h1>LocacionModelo.java</h1><pre class="source lang-java linenums">package com.example.going.models;
+
+
+
+
+import java.util.HashSet;
+
+import java.util.Set;
+
+import com.example.going.entities.Comentarios;
+import com.example.going.entities.Fotos;
+
+
+
+
+public class LocacionModelo {
+
+	
+	
+	private int id;
+	
+
+	
+	private String nombre;
+	
+	private int valoracion;
+	
+	private String direccion;
+	private String descripcion;
+<span class="pc" id="L30">	private Set&lt;Fotos&gt; fotos = new HashSet&lt;&gt;();</span>
+<span class="pc" id="L31">	private Set&lt;Comentarios&gt; comentarios = new HashSet&lt;&gt;();</span>
+	
+	
+	public LocacionModelo(int id, String nombre, int valoracion, String direccion, String descripcion,
+			Set&lt;PersonaModelo&gt; persona) {
+<span class="nc" id="L36">		super();</span>
+<span class="nc" id="L37">		this.id = id;</span>
+<span class="nc" id="L38">		this.nombre = nombre;</span>
+<span class="nc" id="L39">		this.valoracion = valoracion;</span>
+<span class="nc" id="L40">		this.direccion = direccion;</span>
+<span class="nc" id="L41">		this.descripcion = descripcion;</span>
+<span class="nc" id="L42">		this.persona = persona;</span>
+<span class="nc" id="L43">	}</span>
+
+
+<span class="pc" id="L46">	public Set&lt;PersonaModelo&gt; persona = new HashSet&lt;&gt;();</span>
+
+
+	public int getId() {
+<span class="fc" id="L50">		return id;</span>
+	}
+
+
+	public void setId(int id) {
+<span class="nc" id="L55">		this.id = id;</span>
+<span class="nc" id="L56">	}</span>
+
+
+	public String getNombre() {
+<span class="fc" id="L60">		return nombre;</span>
+	}
+
+
+	public void setNombre(String nombre) {
+<span class="fc" id="L65">		this.nombre = nombre;</span>
+<span class="fc" id="L66">	}</span>
+
+
+	public int getValoracion() {
+<span class="fc" id="L70">		return valoracion;</span>
+	}
+
+
+	public void setValoracion(int valoracion) {
+<span class="nc" id="L75">		this.valoracion = valoracion;</span>
+<span class="nc" id="L76">	}</span>
+
+
+	public Set&lt;PersonaModelo&gt; getPersona() {
+<span class="nc" id="L80">		return persona;</span>
+	}
+
+
+	public void setPersona(Set&lt;PersonaModelo&gt; persona) {
+<span class="nc" id="L85">		this.persona = persona;</span>
+<span class="nc" id="L86">	}</span>
+
+	public String getDireccion() {
+<span class="fc" id="L89">		return direccion;</span>
+	}
+
+
+	public void setDireccion(String direccion) {
+<span class="nc" id="L94">		this.direccion = direccion;</span>
+<span class="nc" id="L95">	}</span>
+
+	public LocacionModelo(int id, String nombre, int valoracion, Set&lt;PersonaModelo&gt; persona) {
+<span class="nc" id="L98">		super();</span>
+<span class="nc" id="L99">		this.id = id;</span>
+<span class="nc" id="L100">		this.nombre = nombre;</span>
+<span class="nc" id="L101">		this.valoracion = valoracion;</span>
+<span class="nc" id="L102">		this.persona = persona;</span>
+<span class="nc" id="L103">	}</span>
+	
+	
+	public LocacionModelo(int id, String nombre, int ranking) {
+<span class="nc" id="L107">		super();</span>
+<span class="nc" id="L108">		this.id = id;</span>
+<span class="nc" id="L109">		this.nombre = nombre;</span>
+<span class="nc" id="L110">		this.valoracion = ranking;</span>
+<span class="nc" id="L111">		this.persona= new HashSet&lt;&gt;();</span>
+<span class="nc" id="L112">	}</span>
+	
+	
+	public LocacionModelo() {
+<span class="fc" id="L116">		super();</span>
+		
+	
+<span class="fc" id="L119">	}</span>
+
+
+	public LocacionModelo(int id, String nombre, int valoracion, String direccion, Set&lt;PersonaModelo&gt; persona) {
+<span class="nc" id="L123">		super();</span>
+<span class="nc" id="L124">		this.id = id;</span>
+<span class="nc" id="L125">		this.nombre = nombre;</span>
+<span class="nc" id="L126">		this.valoracion = valoracion;</span>
+<span class="nc" id="L127">		this.direccion = direccion;</span>
+<span class="nc" id="L128">		this.persona = persona;</span>
+<span class="nc" id="L129">	}</span>
+
+
+	public String getDescripcion() {
+<span class="fc" id="L133">		return descripcion;</span>
+	}
+
+
+	public void setDescripcion(String descripcion) {
+<span class="nc" id="L138">		this.descripcion = descripcion;</span>
+<span class="nc" id="L139">	}</span>
+
+
+	public Set&lt;Fotos&gt; getFotos() {
+<span class="fc" id="L143">		return fotos;</span>
+	}
+
+
+
+
+	public Set&lt;Comentarios&gt; getComentarios() {
+<span class="fc" id="L150">		return comentarios;</span>
+	}
+
+
+	public void setComentarios(Set&lt;Comentarios&gt; comentarios) {
+<span class="nc" id="L155">		this.comentarios = comentarios;</span>
+<span class="nc" id="L156">	}</span>
+
+
+	public LocacionModelo(int id, String nombre, int valoracion, String direccion, String descripcion,Set&lt;Comentarios&gt; comentarios,
+			Set&lt;Fotos&gt; fotos) {
+<span class="fc" id="L161">		super();</span>
+<span class="fc" id="L162">		this.id = id;</span>
+<span class="fc" id="L163">		this.nombre = nombre;</span>
+<span class="fc" id="L164">		this.valoracion = valoracion;</span>
+<span class="fc" id="L165">		this.direccion = direccion;</span>
+<span class="fc" id="L166">		this.descripcion = descripcion;</span>
+<span class="fc" id="L167">		this.fotos = fotos;</span>
+<span class="fc" id="L168">		this.comentarios = comentarios;</span>
+<span class="fc" id="L169">	}</span>
+
+
+	public String getUnaFoto() {
+<span class="nc" id="L173">		Fotos fto1 = new Fotos();</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">		for (Fotos fto: this.fotos) {</span>
+<span class="nc" id="L175">			fto1= fto;</span>
+<span class="nc" id="L176">		}</span>
+		
+<span class="nc" id="L178">		return fto1.getImagen();</span>
+	}
+
+
+	public LocacionModelo(int id, String nombre, String direccion, String descripcion) {
+<span class="nc" id="L183">		super();</span>
+<span class="nc" id="L184">		this.id = id;</span>
+<span class="nc" id="L185">		this.nombre = nombre;</span>
+<span class="nc" id="L186">		this.direccion = direccion;</span>
+<span class="nc" id="L187">		this.descripcion = descripcion;</span>
+<span class="nc" id="L188">	}</span>
+
+
+	public void setFotos(Set&lt;Fotos&gt; fotos) {
+<span class="fc" id="L192">		this.fotos = fotos;</span>
+<span class="fc" id="L193">	}</span>
+	
+	
+
+	
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

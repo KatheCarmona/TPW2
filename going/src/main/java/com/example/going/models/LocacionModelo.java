@@ -144,9 +144,6 @@ public class LocacionModelo {
 	}
 
 
-	public void setFotos(Set<Fotos> fotos) {
-		this.fotos = fotos;
-	}
 
 
 	public Set<Comentarios> getComentarios() {
@@ -179,6 +176,20 @@ public class LocacionModelo {
 		}
 		
 		return fto1.getImagen();
+	}
+
+
+	public LocacionModelo(int id, String nombre, String direccion, String descripcion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.descripcion = descripcion;
+	}
+
+
+	public void setFotos(Set<Fotos> fotos) {
+		this.fotos = fotos;
 	}
 	
 	

@@ -170,6 +170,18 @@ public class Persona {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	
+
+
+	public Persona(int id, String nombre, int edad, String email) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.email = email;
+	}
+
 
 
 	public Persona(int id, String nombre, int edad, String email, String locacion, Avatar avatar) {
